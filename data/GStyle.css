@@ -3,3 +3,7 @@ body{
     color: #ddd;
     font-family: 'calibri';
 }
+
+img{
+    box-shadow: #0bf 4px 4px 4px;
+}
