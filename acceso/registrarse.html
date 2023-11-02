@@ -4,24 +4,34 @@
     <meta charset="UTF-8">
     <title>Registrarse</title>
     <link rel="shorcut icon" href="../media/img/bones icon.jpg">
-    <link rel="stylesheet" href="../data/GStyle.css">
+    <link rel="stylesheet" href="../data/estiloinciarsesion.css">
 </head>
 <body>
-    <header>
-        <h1>Crear cuenta</h1>
-        <img src="../media/img/bones icon.jpg" height="128px" width="128px" alt="bones icon">
-        <img src="../media/img/deevee icon.jpg" height="128px" width="128px" alt="deeve icon">
-    </header>
-    <form>
-        <input type="text" required="true" placeholder="Nombre de Usuario">*
-        <br>Fecha de nacimiento <input type="date">*
-        <br><input type="email" required="true" placeholder="Correo electronico">*
-        <br><input type="password" required="true" placeholder="Contraseña">*
-        <br><button type="submit">Crear Cuenta</button>
+    <div class="fondo">
+        <div class="blur glass-efect">
+            <header>
+                <h1>Crear cuenta</h1>
+            </header>
+            <form>
+                <p>¿Ya estas registrado?<a href="iniciarsesion.html">Inicia sesión</a></p>
+                <p>NOMBRE</p>
+                <input type="text" required="true" placeholder="Nombre">*
+                <p>APELLIDO PATERNO</p>
+                <input type="text" required="true" placeholder="Apellido Paterno">*
+                <p>APELLIDO MATERNO</p>
+                <input type="text" required="true" placeholder="Apellido Materno">*
+                <p>CORREO ELECTRONICO</p>
+                <input type="email" required="true" placeholder="Apellido Materno">*
+                <p>CONTRASEÑA</p>
+                <input type="password" required="true" placeholder="Contraseña">*
+                <p>CONFIRMAR CONTRASEÑA</p>
+                <input type="password" required="true" placeholder="Contraseña">*
+                
+                <br><br>
+                <button type="submit">Crear Cuenta</button>
+        </div>
+    </div>
     </form>
-    <p>
-        ¿Ya tienes cuenta?
-        <br><a href="index.html">Iniciar sesion</a>
-    </p>
+    
 </body>
 </html>
