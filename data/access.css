@@ -70,3 +70,26 @@ div{
     background-color: #fff;
     color: #0bf;
 }
+
+/* Para crear cuenta */
+.long{
+    width: 1024px;
+}
+
+.divLong{
+    width: 95%;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
+
+.row{
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+}
+
+.row p{
+    flex-basis: calc(33.33%);
+    padding: 0 2rem;
+}

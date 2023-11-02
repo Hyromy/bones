@@ -2,36 +2,52 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>Registrarse</title>
+    <title>BONES | Registrarse</title>
     <link rel="shorcut icon" href="../media/img/bones icon.jpg">
-    <link rel="stylesheet" href="../data/estiloinciarsesion.css">
+    <link rel="stylesheet" href="../data/access.css">
 </head>
 <body>
-    <div class="fondo">
-        <div class="blur glass-efect">
+    <section class="long">
             <header>
-                <h1>Crear cuenta</h1>
+                <img class="shield" src="../media/img/bonesDino.png">
+                <br><img class="shieldText"src="../media/img/bonesTitle.png">
+                <h2>Crear cuenta</h2>
             </header>
             <form>
-                <p>¿Ya estas registrado?<a href="iniciarsesion.html">Inicia sesión</a></p>
-                <p>NOMBRE</p>
-                <input type="text" required="true" placeholder="Nombre">*
-                <p>APELLIDO PATERNO</p>
-                <input type="text" required="true" placeholder="Apellido Paterno">*
-                <p>APELLIDO MATERNO</p>
-                <input type="text" required="true" placeholder="Apellido Materno">*
-                <p>CORREO ELECTRONICO</p>
-                <input type="email" required="true" placeholder="Apellido Materno">*
-                <p>CONTRASEÑA</p>
-                <input type="password" required="true" placeholder="Contraseña">*
-                <p>CONFIRMAR CONTRASEÑA</p>
-                <input type="password" required="true" placeholder="Contraseña">*
-                
-                <br><br>
-                <button type="submit">Crear Cuenta</button>
-        </div>
-    </div>
-    </form>
-    
+                <p>¿Ya estas registrado? <a href="iniciarsesion.html">Inicia sesión</a></p>
+                <div class="divLong">
+                    <div class="row">
+                        <p>
+                            <label><b>NOMBRE*</b></label>
+                            <input class="input" type="text" required="true" placeholder="Tu nombre">
+                        </p>
+                        <p>
+                            <label><b>APELLIDO PATERNO</b></label>
+                            <input class="input" type="text" placeholder="Tu apellido paterno">
+                        </p>
+                        <p>
+                            <label><b>APELLIDO MATERNO</b></label>
+                            <input class="input" type="text" placeholder="Tu apellido materno">
+                        </p>
+                    </div>
+                    <div class="row">
+                        <p>
+                            <label><b>CORREO ELECTRÓNICO*</b></label>
+                            <input class="input" type="email" required="true" placeholder="ejem: usuario@email.com">
+                        </p>
+                        <p>
+                            <label><b>CONTRASEÑA*</b></label>
+                            <input class="input" type="password" required="true" placeholder="Crea una contraseña">
+                        </p>
+                        <p>
+                            <label><b>CONFIRMAR CONTRASEÑA*</b></label>
+                            <input class="input" type="password" required="true" placeholder="Confirma tu contraseña">
+                        </p>
+                    </div>  
+                </div>
+                <!-- falta dar alta -->
+                <button class="send" type="submit">Crear Cuenta</button>
+            </form>
+    </section>
 </body>
 </html>
