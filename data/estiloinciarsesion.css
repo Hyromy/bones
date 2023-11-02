@@ -24,6 +24,7 @@ body{
     margin: 0 auto;
     border-radius:32px;
     text-align: center;
+    
 }
 
 .glass-efect{
@@ -31,7 +32,7 @@ body{
     backdrop-filter: blur(0.4rem);
 }
 
-.titulo{
+h1{
     color: white;
 }
 
@@ -42,4 +43,8 @@ img{
 
 p{
     color: white;
+}
+
+a{
+    color:rgb(42, 135, 211);
 }
