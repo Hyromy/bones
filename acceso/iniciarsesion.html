@@ -2,31 +2,40 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BoneS / inicio</title>
+    <title>BONES | Inicio</title>
     <link rel="shorcut icon" href="../media/img/bones icon.jpg">
-    <link rel="stylesheet" href="../data/estiloinciarsesion.css">
+    <link rel="stylesheet" href="../data/access.css">
 </head>
 <body>
-    <div class="fondo">
-        <div class="blur glass-efect">
-            <header>
-                <h1 class="titulo">Iniciar sesion</h1>
-                <img src="../media/bones.jpeg">
-            </header>
-            <form>
-                <p>¿No tienes una cuenta?<a href="recuperar.html">Crea una cuenta</a></p>
-                <a href="recuperar.html">¿Olvidaste tu contraseña</a>
-                <p>CORREO ELECTRÓNICO</p>
-                <input type="text" required="true" placeholder="Correo electronico">
-                <p>CONTRASEÑA</p>
-                <input type="password" required="true" placeholder="Contraseña">
-                <br><br>
-                <button type="submit">
-                    <a href="../principal/inicio.html">Iniciar sesion</a>
-                </button>
-            </form>
-        </div>
-    </div>
-    
+    <section>
+        <header>
+            <img class="shield" src="../media/img/bonesDino.png">
+            <br><img class="shieldText"src="../media/img/bonesTitle.png">
+            <h2>Iniciar sesión</h1>
+        </header>
+        <form>
+            <p>
+                ¿No tienes una cuenta? <a href="recuperar.html">Crea una cuenta</a>
+                <br><a href="recuperar.html">¿Olvidaste tu contraseña</a>
+            </p>
+            
+            <div>
+                <p>
+                    <label><b>CORREO ELECTRÓNICO</b></label>
+                    <input class="input" type="email" required="true" placeholder="ejem: usuario@email.com">
+                </p>
+                
+                <p>
+                    <label><b>CONTRASEÑA</b></label>
+                    <input class="input" type="password" required="true" placeholder="Contraseña">
+                </p>
+            </div>
+            
+            <a href="../principal/inicio.html">
+                <!-- Falta conectar con el usuario existente -->
+                <input class="send" type="submit" value="Ingresar">
+            </a>
+        </form>
+    </section>
 </body>
 </html>
