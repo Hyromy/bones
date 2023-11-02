@@ -1,0 +1,59 @@
+create database bones;
+\c bones
+
+create table usuario(id_usuario serial primary key,
+                nommbre_usuario varchar(24) not null,
+                ap_pat_usuario varchar(32),
+                ap_mat_usuario varchar(32),
+                correo varchar(64) not null,
+                contraseña varchar(32) not null,
+                no_telefono bigint);
+
+create table cliente(id_cliente serial primary key,
+                id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade,
+                preferencias varchar(256));
+
+create table supervisor(id_supervisor serial primary key,
+                id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade);
+
+create table museo(id_museo serial primary key,
+                nombre varchar(128) not null,
+                categoria varchar(256) not null,
+                estado varchar(64) not null,
+                colonia varchar(128) not null,
+                calle varchar(128) not null,
+                detalles varchar(512),
+                n_interior int,
+                n_exterior int,
+                img_url varchar(1024));
+
+create table proveedor(id_supervisor serial primary key,
+                id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade,
+                id_museo int, foreign key(id_museo) references museo(id_museo) on update cascade on delete cascade);
+
+create table boleto(id_boleto serial primary key,
+                id_cliente int, foreign key(id_cliente) references cliente(id_cliente) on update cascade on delete cascade,
+                fecha_compra date,
+                fecha_vencimiento date,
+                descripcion varchar(512));
+
+create table comentario(id_comentario serial primary key,
+                id_comentario_responde int, foreign key(id_comentario_responde) references comentario(id_comentario),
+                id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade,
+                id_supervisor int, foreign key(id_supervisor) references supervisor(id_supervisor) on update cascade on delete cascade,
+                texto varchar(512) not null);
+
+create table pago(id_pago serial primary key,
+                cantidad float not null,
+                fecha_pago date not null);
+
+create table paypal(id_paypal int,
+                primary key(id_paypal), foreign key(id_paypal) references pago(id_pago));
+
+create table tarjeta(id_tarjeta int,
+                primary key(id_tarjeta), foreign key(id_tarjeta) references pago(id_pago) on update cascade on delete cascade);
+
+create table valoracion(id_valoracion serial primary key,
+                id_cliente int, foreign key(id_cliente) references cliente(id_cliente) on update cascade on delete cascade,
+                estrellas int check(estrellas >= 1 and estrellas <= 5) not null,
+                opinion varchar(256) not null);
