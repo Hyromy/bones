@@ -5,7 +5,6 @@
 </head>
 </html>
 
-
 <?php
     $email = $_POST["email"];
     $newPass = $_POST["newPass"];
@@ -24,30 +23,48 @@
         }
 
         public function changePass($user) {
-            //Faltan correciones para validar correo existente
-
-            $sql = "UPDATE usuario set contrasena=? where correo=?;";
-
-            $stmt = parent::get()->prepare($sql);
-            $stmt->bindParam(1, $user->nuevaContrasena);
-            $stmt->bindParam(2, $user->correo);
-
             $time = 1750;
-            if ($stmt->execute()) {
-                echo "  <section>
-                            <header>
-                                <img class='shield' src='../../media/img/bonesDino.png'>
-                               <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
-                                <h2>Contraseña restablecida</h2>
-                            </header>
-                        </section>
-                        <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
+            $find = "SELECT id_usuario from usuario where correo=?;";
+            $stmtFind = parent::get()->prepare($find);
+            $stmtFind->bindParam(1, $user->correo);
+            $stmtFind->execute();
+            
+            if ($stmtFind->rowCount() == 1) {
+                $id_usuario = $stmtFind->fetch();
+                $id = $id_usuario["id_usuario"];
+
+                $sql = "UPDATE usuario set contrasena=? where id_usuario=?;";
+                $stmt = parent::get()->prepare($sql);
+                $stmt->bindParam(1, $user->nuevaContrasena);
+                $stmt->bindParam(2, $id);
+
+                if (!$stmt->execute()) {
+                    echo "  <section>
+                                <header>
+                                    <img class='shield' src='../../media/img/bonesDino.png'>
+                                    <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
+                                    <h2>Contraseña restablecida</h2>
+                                </header>
+                            </section>
+                            <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
+                } else {
+                    echo "  <section>
+                                <header>
+                                    <img class='shield' src='../../media/img/bonesDino.png'>
+                                    <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
+                                    <h2>Hubo un problema<br>intentalo más tarde</h2>
+                                </header>
+                            </section>
+                            <script>setTimeout(function() {window.location.href = '../../acceso/recuperar.html'}, $time)</script>";
+                }
             } else {
+                $time = 3000;
                 echo "  <section>
                             <header>
                                 <img class='shield' src='../../media/img/bonesDino.png'>
                                 <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
-                                <h2>Hubo un problema<br>intentalo más tarde</h2>
+                                <h2>No se puede restablecer</h2>
+                                <p>No existe ninguna cuenta asociada a '$user->correo'</p>
                             </header>
                         </section>
                         <script>setTimeout(function() {window.location.href = '../../acceso/recuperar.html'}, $time)</script>";
