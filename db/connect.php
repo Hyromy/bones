@@ -20,7 +20,7 @@
 
                 $this->connection -> setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
 
-                echo "CONEXION EXISTOSA<br>";
+                //echo "CONEXION EXISTOSA<br>";
             } catch(PDOException $error) {
                 echo "Error: " . $error->getMessage() . "<br>";
             }

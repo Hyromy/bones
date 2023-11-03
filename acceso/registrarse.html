@@ -13,39 +13,38 @@
                 <br><img class="shieldText"src="../media/img/bonesTitle.png">
                 <h2>Crear cuenta</h2>
             </header>
-            <form>
+            <form action="../db/operations/usuario.php" method="post">
                 <p>¿Ya estas registrado? <a href="iniciarsesion.html">Inicia sesión</a></p>
                 <div class="divLong">
                     <div class="row">
                         <p>
                             <label><b>NOMBRE*</b></label>
-                            <input class="input" type="text" required="true" placeholder="Tu nombre">
+                            <input name="nombre" class="input" type="text" required placeholder="Tu nombre">
                         </p>
                         <p>
                             <label><b>APELLIDO PATERNO</b></label>
-                            <input class="input" type="text" placeholder="Tu apellido paterno">
+                            <input name="paterno" class="input" type="text" placeholder="Tu apellido paterno">
                         </p>
                         <p>
                             <label><b>APELLIDO MATERNO</b></label>
-                            <input class="input" type="text" placeholder="Tu apellido materno">
+                            <input name="materno" class="input" type="text" placeholder="Tu apellido materno">
                         </p>
                     </div>
                     <div class="row">
                         <p>
                             <label><b>CORREO ELECTRÓNICO*</b></label>
-                            <input class="input" type="email" required="true" placeholder="ejem: usuario@email.com">
+                            <input name="correo" class="input" type="email" required placeholder="ejem: usuario@email.com">
                         </p>
                         <p>
                             <label><b>CONTRASEÑA*</b></label>
-                            <input class="input" type="password" required="true" placeholder="Crea una contraseña">
+                            <input name="pass" class="input" type="password" required placeholder="Crea una contraseña">
                         </p>
                         <p>
                             <label><b>CONFIRMAR CONTRASEÑA*</b></label>
-                            <input class="input" type="password" required="true" placeholder="Confirma tu contraseña">
+                            <input name="confirm" class="input" type="password" required placeholder="Confirma tu contraseña">
                         </p>
                     </div>  
                 </div>
-                <!-- falta dar alta -->
                 <button class="send" type="submit">Crear Cuenta</button>
             </form>
     </section>

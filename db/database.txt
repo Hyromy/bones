@@ -2,11 +2,11 @@ create database bones;
 \c bones
 
 create table usuario(id_usuario serial primary key,
-                nommbre_usuario varchar(24) not null,
+                nombre_usuario varchar(24) not null,
                 ap_pat_usuario varchar(32),
                 ap_mat_usuario varchar(32),
-                correo varchar(64) not null,
-                contraseña varchar(32) not null,
+                correo varchar(64) unique not null,
+                contrasena varchar(32) not null,
                 no_telefono bigint);
 
 create table cliente(id_cliente serial primary key,
