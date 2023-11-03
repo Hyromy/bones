@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="../../data/access.css">
+</head>
+</html>
+
 <?php
     $nombre = $_POST["nombre"];
     $paterno = $_POST["paterno"];
@@ -41,10 +48,25 @@
             $stmt->bindParam(4, $user->correo);
             $stmt->bindParam(5, $user->contrasena);
 
+            $time = 1750;
             if ($stmt->execute()) {
-                echo "registrado<br>";
+                echo "  <section>
+                            <header>
+                                <img class='shield' src='../../media/img/bonesDino.png'>
+                               <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
+                                <h2>Cuenta creada con éxito</h2>
+                            </header>
+                        </section>
+                        <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
             } else {
-                echo "problemas al registar<br>";
+                echo "  <section>
+                            <header>
+                                <img class='shield' src='../../media/img/bonesDino.png'>
+                                <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
+                                <h2>Hubo un problema<br>intentalo más tarde</h2>
+                            </header>
+                        </section>
+                        <script>setTimeout(function() {window.location.href = '../../acceso/registrarse.html'}, $time)</script>";
             }
         }
     }

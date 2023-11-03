@@ -1,3 +1,10 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <link rel="stylesheet" href="../../data/access.css">
+</head>
+</html>
+
 <?php
     $email = $_POST["email"];
     $pass = $_POST["pass"];
@@ -24,11 +31,20 @@
 
             $execute = $stmt->execute();
             $exists = $stmt->fetch(PDO::FETCH_ASSOC);
+            $time = 1750;
             if ($execute && $exists) {
-                $id_usuario = $exists["id_usuario"];
-                echo "ID para el correo '" . $user->correo . "': " . $id_usuario;
+                //$id_usuario = $exists["id_usuario"];
+                //echo "ID para el correo '" . $user->correo . "': " . $id_usuario;
+                echo "<script>window.location.href = '../../principal/inicio.html'</script>";
             } else {
-                echo "problemas para encontrar el usuario";
+                echo "  <section>
+                            <header>
+                                <img class='shield' src='../../media/img/bonesDino.png'>
+                                <br><img class='shieldText' src='../../media/img/bonesTitle.png'>
+                                <h2>Correo o contraseña incorrectos</h2>
+                            </header>
+                        </section>
+                        <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
             }
         }
     }
