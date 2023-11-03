@@ -13,22 +13,19 @@
             <br><img class="shieldText"src="../media/img/bonesTitle.png">
             <h2>Recuperar contraseña</h1>
         </header>
-        <form>
+        <form action="../db/operations/changePassword.php" method="post">
             <p>¿Ya estas registrado? <a href="iniciarsesion.html">Inicia sesión</a></p>
             <div>
                 <p>
                     <label><b>CORREO ELECTRÓNICO</b></label>
-                    <input class="input" type="email" required="true" placeholder="ejem: usuario@email.com">
+                    <input name="email" class="input" type="email" required placeholder="ejem: usuario@email.com">
                 </p>
                 <p>
                     <label><b>NUEVA CONTRASEÑA</b></label>
-                    <input class="input" type="password" required="true" placeholder="Crea una nueva contraseña">
+                    <input name="newPass" class="input" type="password" required placeholder="Crea una nueva contraseña">
                 </p>
             </div>
-            <a href="iniciarsesion.html">
-                <!-- Falta actualizar a la base de datos -->
-                <input class="send" type="submit" value="Cambiar contraseña">
-            </a>
+            <button class="send" type="submit">Cambiar contraseña</button>
         </form>
     </section>
 </body>
