@@ -135,8 +135,9 @@ footer img{
 
 /* Para pagina principal*/
 .main{
-    margin: 2rem;
-    background-color: #000; 
+    width: 1080px;
+    margin: 2rem auto;
+    background-color: #000;
 }
 
 .main nav{
@@ -177,6 +178,11 @@ footer img{
 
 .src input::placeholder{
     color:#888
+}
+
+.main h2{
+    text-align: center;
+    color: #0bf;
 }
 
 .main article{

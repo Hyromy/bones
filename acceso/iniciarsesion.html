@@ -13,7 +13,7 @@
             <br><img class="shieldText"src="../media/img/bonesTitle.png">
             <h2>Iniciar sesión</h1>
         </header>
-        <form>
+        <form action="../db/operations/login.php" method="post">
             <p>
                 ¿No tienes una cuenta? <a href="registrarse.html">Crea una cuenta</a>
                 <br><a href="recuperar.html">¿Olvidaste tu contraseña</a>
@@ -21,17 +21,15 @@
             <div>
                 <p>
                     <label><b>CORREO ELECTRÓNICO</b></label>
-                    <input class="input" type="email" required="true" placeholder="ejem: usuario@email.com">
+                    <input name="email" class="input" type="email" required placeholder="ejem: usuario@email.com">
                 </p>
                 <p>
                     <label><b>CONTRASEÑA</b></label>
-                    <input class="input" type="password" required="true" placeholder="Contraseña">
+                    <input name="pass" class="input" type="password" required placeholder="Contraseña">
                 </p>
             </div>
-            <a href="../principal/inicio.html">
-                <!-- Falta conectar con el usuario existente -->
-                <input class="send" type="submit" value="Ingresar">
-            </a>
+            <!-- Falta conectar con el usuario existente -->
+            <button class="send" type="submit">Ingresar</button>
         </form>
     </section>
 </body>
