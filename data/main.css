@@ -29,7 +29,7 @@ hr{
     border: #0bf 2px solid;
     width: 97.5%;
     border-radius: 8px;
-    z-index: 99;
+    z-index: 100;
 }
 
 .short{
@@ -67,6 +67,7 @@ a{
 
 a:hover{
     color: #fff;
+    cursor: pointer;
 }
 
 footer{
@@ -135,7 +136,7 @@ footer img{
 
 /* Para pagina principal*/
 .main{
-    width: 1080px;
+    max-width: 1620px;
     margin: 2rem auto;
     background-color: #000;
 }
@@ -144,6 +145,7 @@ footer img{
     background-color: #000;
     position: sticky;
     top: 96px;
+    z-index: 99;
     padding: 0.5rem 0 0;
     box-shadow: #000 0 0 16px;
 }
@@ -180,9 +182,24 @@ footer img{
     color:#888
 }
 
-.main h2{
-    text-align: center;
-    color: #0bf;
+.main hr {
+    width: 90%;
+    margin-bottom: 1rem;
+    border: #fff 2px solid;
+    position: relative;
+    top: 2.75rem;
+    z-index: 0;
+}
+
+.spliter {
+    font-size: 2rem;
+    font-weight: bold;
+    background-color: #000;
+    position: relative;
+    z-index: 1;
+    width: max-content;
+    margin: 0 auto;
+    padding: 0 1rem;
 }
 
 .main article{
@@ -192,7 +209,8 @@ footer img{
 }
 
 .main article div{
-    height: 384px;
+    min-height: 128px;
+    max-width: 384px;
     margin: 1rem;
     padding: 1rem;
     max-width: 384px;
@@ -213,4 +231,5 @@ footer img{
 .main article div img{
     width: 100%;
     border: #ddd 2px solid;
+    z-index: 0;
 }
