@@ -35,7 +35,7 @@
             if ($execute && $exists) {
                 //$id_usuario = $exists["id_usuario"];
                 //echo "ID para el correo '" . $user->correo . "': " . $id_usuario;
-                echo "<script>window.location.href = '../../principal/inicio.html'</script>";
+                echo "<script>window.location.href = '../../principal/inicio.php'</script>";
             } else {
                 echo "  <section>
                             <header>
