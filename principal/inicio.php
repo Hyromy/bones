@@ -53,7 +53,8 @@
     <meta charset="UTF-8">
     <title>BONES | Inicio</title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
-    <link rel="stylesheet" href="../data/main.css">
+    <link rel="stylesheet" href="../data/default.css">
+    <link rel="stylesheet" href="../data/main.css">    
 </head>
 <body>
     <div id="inicio"></div>
@@ -75,9 +76,9 @@
     <hr>
     <section class="main">
         <nav>
-            <form class="src">
+            <form class="src" action="" method="post">
                 <img src="../media/img/buscar.png">
-                <input type="text" placeholder="Buscar museos">
+                <input name="nombre" type="text" placeholder="Buscar museos">
             </form>
         </nav>
         <hr>

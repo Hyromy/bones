@@ -22,17 +22,17 @@ section{
     backdrop-filter: blur(8px);
 }
 
-h2{
+header h2{
     font-size: 2rem;
     margin: 0;
 }
 
-.shield{
+header .shield{
     width: 128px;
     height: 128px;
 }
 
-.shieldText{
+header .shieldText{
     height: 64px;
 }
 
@@ -45,19 +45,19 @@ a:hover{
     color: #fff;
 }
 
-div{
+section form div{
     text-align: left;
     width: 75%;
     margin: 0 auto;
 }
 
-.input{
+section form .input{
     width: 95%;
     font-size:20px;
     padding: 0.5rem;
 }
 
-.send{
+section form .send{
     background-color: #286181;
     color: #fff;
     font-weight: bolder;
@@ -66,30 +66,29 @@ div{
     transition: 0.25s ease;
 }
 
-.send:hover{
+section form .send:hover{
     background-color: #fff;
     color: #0bf;
 }
 
-/* Para crear cuenta */
 .long{
     width: 1024px;
 }
 
-.divLong{
+.long .divLong{
     width: 95%;
     display: flex;
     flex-wrap: wrap;
     justify-content: space-between;
 }
 
-.row{
+.long .divLong .row{
     display: flex;
     width: 100%;
     justify-content: space-between;
 }
 
-.row p{
+.long .divLong .row p{
     flex-basis: calc(33.33%);
     padding: 0 2rem;
 }

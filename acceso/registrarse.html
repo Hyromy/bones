@@ -4,49 +4,49 @@
     <meta charset="UTF-8">
     <title>BONES | Registrarse</title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
-    <link rel="stylesheet" href="../data/access.css">
+    <link rel="stylesheet" href="../styles/access.css">
 </head>
 <body>
     <section class="long">
-            <header>
-                <img class="shield" src="../media/img/bonesDino.png">
-                <br><img class="shieldText"src="../media/img/bonesTitle.png">
-                <h2>Crear cuenta</h2>
-            </header>
-            <form action="../db/operations/usuario.php" method="post">
-                <p>¿Ya estas registrado? <a href="iniciarsesion.html">Inicia sesión</a></p>
-                <div class="divLong">
-                    <div class="row">
-                        <p>
-                            <label><b>NOMBRE*</b></label>
-                            <input name="nombre" class="input" type="text" required placeholder="Tu nombre">
-                        </p>
-                        <p>
-                            <label><b>APELLIDO PATERNO</b></label>
-                            <input name="paterno" class="input" type="text" placeholder="Tu apellido paterno">
-                        </p>
-                        <p>
-                            <label><b>APELLIDO MATERNO</b></label>
-                            <input name="materno" class="input" type="text" placeholder="Tu apellido materno">
-                        </p>
-                    </div>
-                    <div class="row">
-                        <p>
-                            <label><b>CORREO ELECTRÓNICO*</b></label>
-                            <input name="correo" class="input" type="email" required placeholder="ejem: usuario@email.com">
-                        </p>
-                        <p>
-                            <label><b>CONTRASEÑA*</b></label>
-                            <input name="pass" class="input" type="password" required placeholder="Crea una contraseña">
-                        </p>
-                        <p>
-                            <label><b>CONFIRMAR CONTRASEÑA*</b></label>
-                            <input name="confirm" class="input" type="password" required placeholder="Confirma tu contraseña">
-                        </p>
-                    </div>  
+        <header>
+            <img class="shield" src="../media/img/bonesDino.png">
+            <br><img class="shieldText"src="../media/img/bonesTitle.png">
+            <h2>Crear cuenta</h2>
+        </header>
+        <form action="../db/operations/usuario.php" method="post">
+            <p>¿Ya estas registrado? <a href="iniciarsesion.html">Inicia sesión</a></p>
+            <div class="divLong">
+                <div class="row">
+                    <p>
+                        <label><b>NOMBRE*</b></label>
+                        <input name="nombre" class="input" type="text" required placeholder="Tu nombre">
+                    </p>
+                    <p>
+                        <label><b>APELLIDO PATERNO</b></label>
+                        <input name="paterno" class="input" type="text" placeholder="Tu apellido paterno">
+                    </p>
+                    <p>
+                        <label><b>APELLIDO MATERNO</b></label>
+                        <input name="materno" class="input" type="text" placeholder="Tu apellido materno">
+                    </p>
                 </div>
-                <button class="send" type="submit">Crear Cuenta</button>
-            </form>
+                <div class="row">
+                    <p>
+                        <label><b>CORREO ELECTRÓNICO*</b></label>
+                        <input name="correo" class="input" type="email" required placeholder="ejem: usuario@email.com">
+                    </p>
+                    <p>
+                        <label><b>CONTRASEÑA*</b></label>
+                        <input name="pass" class="input" type="password" required placeholder="Crea una contraseña">
+                    </p>
+                    <p>
+                        <label><b>CONFIRMAR CONTRASEÑA*</b></label>
+                        <input name="confirm" class="input" type="password" required placeholder="Confirma tu contraseña">
+                    </p>
+                </div>  
+            </div>
+            <button class="send" type="submit">Crear Cuenta</button>
+        </form>
     </section>
 </body>
 </html>
