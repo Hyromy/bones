@@ -25,7 +25,10 @@ create table museo(id_museo serial primary key,
                 detalles varchar(512),
                 n_interior int,
                 n_exterior int,
-                img_url varchar(1024));
+                reputacion float check(reputacion >= 0 and reputacion <= 5) default 0,
+                visitas int default 0,
+                vid_url varchar(1024),
+                img_url varchar(6150));
 
 create table proveedor(id_supervisor serial primary key,
                 id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade,
@@ -57,3 +60,14 @@ create table valoracion(id_valoracion serial primary key,
                 id_cliente int, foreign key(id_cliente) references cliente(id_cliente) on update cascade on delete cascade,
                 estrellas int check(estrellas >= 1 and estrellas <= 5) not null,
                 opinion varchar(256) not null);
+
+insert into usuario(nombre_usuario, correo, contrasena) values('Admin', 'admin@email.com', 'admin.1234');
+
+categorias disponibles "Arte Cultura Arqueologia Tecnologia Arquitectura Antropologia Etniografia";
+insert into museo(nombre, categoria, estado, colonia, calle, detalles, reputacion, visitas) values
+    ('Museo de prueba 1', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Estado de México', 'Tecamac', 'Jardines del mar', 'Vamos a suponer que es mi casa xd', 5, 1000),
+    ('Museo de prueba 2', ' Tecnologia Antropologia Arqueologia ', 'Estado de México', 'Ecatepec', 'Benito Juárez', 'Es una prueba', 4.2, 2000),
+    ('Museo de prueba 3', ' Etniografia Arquitectura ', 'Estado de México', 'Toluca', 'Ignacio Allende', 'Es una prueba', 3.4, 3000),
+    ('Museo de prueba 4', ' Cultura Etniografia Arquitectura Antropologia Arqueologia ', 'Estado de México', 'Naucalpan', 'Miguel Hidalgo', 'Es una prueba', 2.6, 4000),
+    ('Museo de prueba 5', ' Antropologia ', 'Estado de México', 'Metepec', 'Venustiano Carranza', 'Es una prueba', 1.8, 5000),
+    ('Museo de prueba 6', ' Arqueologia Tecnologia Cultura ', 'Estado de México', 'San Mateo Atenco', '16 de Septiembre', 'Es una prueba', 1, 6000);
