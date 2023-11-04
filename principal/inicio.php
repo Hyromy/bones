@@ -3,7 +3,7 @@
     $defaulLimit = 6;
 
     include_once("../db/connect.php");
-    class MuseoDAO extends Connect {
+    class MainDAO extends Connect {
         public function __construct() {
             parent::__construct();
         }
@@ -33,6 +33,7 @@
             $sql = "SELECT id_museo from museo order by $atribute $order limit $limit;";
 
             $stmt = parent::get()->prepare($sql);
+            
             $execute = $stmt->execute();
             $ids = array();
 
@@ -44,7 +45,7 @@
         }
     }
 
-    $posgres = new MuseoDAO;
+    $posgres = new MainDAO;
 ?>
 
 <!DOCTYPE html>
@@ -53,8 +54,8 @@
     <meta charset="UTF-8">
     <title>BONES | Inicio</title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
-    <link rel="stylesheet" href="../data/default.css">
-    <link rel="stylesheet" href="../data/main.css">    
+    <link rel="stylesheet" href="../styles/default.css">
+    <link rel="stylesheet" href="../styles/main.css">
 </head>
 <body>
     <div id="inicio"></div>
@@ -75,10 +76,10 @@
     </header>
     <hr>
     <section class="main">
-        <nav>
-            <form class="src" action="" method="post">
+        <nav class="nav">
+            <form class="src" action="museo.php" method="get">
                 <img src="../media/img/buscar.png">
-                <input name="nombre" type="text" placeholder="Buscar museos">
+                <input name="busqueda" type="text" placeholder="Buscar museos">
             </form>
         </nav>
         <hr>
