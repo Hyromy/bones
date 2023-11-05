@@ -1,0 +1,39 @@
+nav{
+    background-color: #000;
+    position: sticky;
+    top: 100px;
+    z-index: 99;
+    box-shadow: #000 0 0 16px;
+}
+
+nav .src{
+    height: 32px;
+    width: 80%;
+    padding: 0.5rem;
+    margin: auto;
+    display: flex;
+    align-items: center;
+}
+
+nav .src img, nav .src input{
+    height: 100%;
+    margin: 0;
+    padding: 0 1rem;
+}
+
+nav .src input{
+    width: 100%;
+    border: #fff 2px solid;
+    border-radius: 16px;
+    background-color: #00000000;
+    color: #0bf;
+    transition: 0.1s ease;
+}
+
+nav .src input:focus{
+    border: #0bf 4px solid;
+}
+
+nav .src input::placeholder{
+    color:#888
+}

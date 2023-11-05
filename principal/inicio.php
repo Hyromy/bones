@@ -1,5 +1,4 @@
 <?php
-
     $defaulLimit = 6;
 
     include_once("../db/connect.php");
@@ -56,6 +55,7 @@
     <link rel="shorcut icon" href="../media/img/bones.ico">
     <link rel="stylesheet" href="../styles/default.css">
     <link rel="stylesheet" href="../styles/main.css">
+    <link rel="stylesheet" href="../styles/nav.css">
 </head>
 <body>
     <div id="inicio"></div>
@@ -76,8 +76,8 @@
     </header>
     <hr>
     <section class="main">
-        <nav class="nav">
-            <form class="src" action="museo.php" method="get">
+        <nav>
+            <form class="src" action="busqueda.php" method="get">
                 <img src="../media/img/buscar.png">
                 <input name="busqueda" type="text" placeholder="Buscar museos">
             </form>
