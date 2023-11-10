@@ -37,6 +37,11 @@
     font-size: 2rem;
 }
 
+.container .museo .face .r p img{
+    height: 2rem;
+    width: 2rem;
+}
+
 .container .museo .bottom{
     display: flex;
 }
@@ -45,6 +50,11 @@
     width: 512px;
     font-size: 1.2rem;
     font-style: italic;
+}
+
+.container .museo .bottom .address p{
+    margin: 0;
+    margin-bottom: 0.25rem;
 }
 
 .container .museo .bottom .address img{

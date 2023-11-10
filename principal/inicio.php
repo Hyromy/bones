@@ -1,5 +1,5 @@
 <?php
-    $defaulLimit = 6;
+    $defaulLimit = 12;
 
     include_once("../db/connect.php");
     class MainDAO extends Connect {
@@ -7,6 +7,7 @@
             parent::__construct();
         }
 
+        /* debe ser reemplazado despues*/
         public function getMain($id) {
             $sql = "SELECT * from museo where id_museo=?;";
 
@@ -93,10 +94,14 @@
                 foreach ($ids as $id) {
                     $museo = $posgres->getMain($id);
                     echo "  <div>
-                                <h3>$museo[0]</h3>
-                                <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                <p>$museo[2]</p>
-                            </div>";
+                                    <form action='museo.php' method='post'>
+                                        <h3>$museo[0]</h3>
+                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <p>$museo[2]</p>
+                                        <input type='text' name='nombre' value='$museo[0]'>
+                                        <button type='submmit'>Ver Museo</button>
+                                    </form>
+                                </div>";
                 }
             ?>
         </article>
@@ -111,9 +116,13 @@
                     foreach ($ids as $id) {
                         $museo = $posgres->getMain($id);
                         echo "  <div>
-                                    <h3>$museo[0]</h3>
-                                    <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                    <p>$museo[2]</p>
+                                    <form action='museo.php' method='post'>
+                                        <h3>$museo[0]</h3>
+                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <p>$museo[2]</p>
+                                        <input type='text' name='nombre' value='$museo[0]'>
+                                        <button type='submmit'>Ver Museo</button>
+                                    </form>
                                 </div>";
                     }
                 ?>
@@ -129,36 +138,17 @@
                     foreach ($ids as $id) {
                         $museo = $posgres->getMain($id);
                         echo "  <div>
-                                    <h3>$museo[0]</h3>
-                                    <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                    <p>$museo[2]</p>
+                                    <form action='museo.php' method='post'>
+                                        <h3>$museo[0]</h3>
+                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <p>$museo[2]</p>
+                                        <input type='text' name='nombre' value='$museo[0]'>
+                                        <button type='submmit'>Ver Museo</button>
+                                    </form>
                                 </div>";
                     }
                 ?>
         </article>
-
-
-
-
-
-
-        <article>
-            <div>
-                <form action="museo.php" method="post">
-                    <h3>Museo</h3>
-                    <img src="../media/img/backgrundAccess.jpeg" alt="Imagen del museo">
-                    <p>texto del museo</p>
-                    <input type="text" name="nombre" value="Delta">
-                    <button type="submmit">Ver Museo</button>
-                </form>
-            </div>
-        </article>
-
-
-
-
-
-
     </section>
     <hr>
     <footer>

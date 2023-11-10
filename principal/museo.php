@@ -1,11 +1,52 @@
 <?php
-    $var = "prueba";
+    $nombre = $_POST["nombre"];
+
+    include_once("../db/connect.php");
+    class DataDAO extends Connect {
+        public function __construct() {
+            parent::__construct();
+        }
+
+        public function getData($nombre) {
+            $sql = "SELECT * from museo where nombre=?;";
+
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $nombre);
+
+            if ($stmt->execute()) {
+                $museo = $stmt->fetch();
+                return $museo;
+            }
+        }
+
+        public function drawStar($amount) {
+            $img = "";
+            if ($amount >= 1) {
+                $x = 0;
+                for ($i = 1; $i < $amount; $i++) {
+                    $img = $img . "<img src='../media/img/star.png'>";
+                    $x++;
+                }
+                if (($amount - $x) != 0) {
+                    $img = $img . "<img src='../media/img/starHalf.png'>";
+                }
+            } else {
+                $img = "<img src='../media/img/starHalf.png'>";
+            }
+
+            return $img;
+        }
+    }
+
+    $postgres = new DataDAO;
+    $museo = $postgres->getData($nombre);
+    $img = $postgres->drawStar($museo["puntuacion"])
 ?>
 
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BONES | <?php echo $var;?></title>
+    <title>BONES | <?php echo $museo["nombre"];?></title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
     <link rel="stylesheet" href="../styles/default.css">
     <link rel="stylesheet" href="../styles/museo.css">
@@ -40,32 +81,31 @@
             <div class="face">
                 <div class="topic"><img src="../media/img/backgrundAccess.jpeg"></div>
                 <div class="topic r">
-                    <h2>Nombre del museo</h2>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus doloribus perspiciatis ratione rem nesciunt. Incidunt dolores debitis dicta, libero fugiat eligendi eveniet commodi, nobis quae ipsam iure ea rerum aliquid.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus doloribus perspiciatis ratione rem nesciunt. Incidunt dolores debitis dicta, libero fugiat eligendi eveniet commodi, nobis quae ipsam iure ea rerum aliquid.</p>
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Natus doloribus perspiciatis ratione rem nesciunt. Incidunt dolores debitis dicta, libero fugiat eligendi eveniet commodi, nobis quae ipsam iure ea rerum aliquid.</p>
+                    <h2><?php echo $museo["nombre"];?></h2>
+                    <p><b>Descripción</b> <?php echo $museo["sinopsis"];?></p>
+                    <p><b>Categorias</b> <?php echo $museo["categoria"];?></p>
+                    <p><b>Puntuación</b> <?php echo $img;?></p>
+                    <p><b>Visitas totales</b> <?php echo $museo["visitas"];?></p>
                 </div>
             </div>
             <hr>
             <div class="bottom">
                 <div class="address">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Deserunt accusamus facilis, perferendis optio vero ex sapiente adipisci. Cumque fugiat adipisci earum ratione aliquam voluptates, veniam error, tenetur repellat, obcaecati vitae?</p>
-                    <p><a href=""><img src="../media/img/link.png"> Pagina oficial de "nombre del museo completo o parcial xd"</a></p>
+                    <p><b>Entidad federativa: </b><?php echo $museo["estado"];?></p>
+                    <p><b>Colonia: </b><?php echo $museo["colonia"];?></p>
+                    <p><b>Calle: </b><?php echo $museo["calle"];?></p>
+                    <p><b>Detalles de la dirección: </b><?php echo $museo["detalles"];?></p>
+                    <p><a href="<?php echo $museo["map_url"];?>" target="_blanck"><img src="../media/img/link.png"> Ver en el mapa</a></p>
+                    <p><a href="<?php echo $museo["address_url"];?>" target="_blanck"><img src="../media/img/link.png"> Pagina oficial de "<?php echo $museo["nombre"];?>"</a></p>
                 </div>
                 <div class="data">
                     <h3>Datos generales</h3>
-                    <p>
-                        Lorem ipsum dolor, sit amet consectetur adipisicing elit. Hic consectetur fugit repellat maxime deserunt ullam veniam architecto at tenetur, repudiandae dolorem sed consequuntur doloribus corrupti nostrum atque voluptatem cum ratione.
-                        Exercitationem, mollitia? Et, laborum dicta. Saepe rem sapiente vero esse, nemo velit illum accusamus ducimus eius cum atque vitae nobis minus, non dignissimos. Totam doloremque iste cumque fugit libero eos.
-                        Ipsum corporis dolor unde. Ipsam inventore dignissimos obcaecati iste sapiente nesciunt, optio dolorum hic praesentium vel cumque minima alias amet vero possimus tempore. Doloremque ipsa totam incidunt rerum. Ut, minima!
-                        Delectus odio, vitae beatae ullam tenetur facere hic. Perferendis quasi molestias nesciunt adipisci voluptatibus. Dicta quibusdam earum id voluptas vitae molestias, repellendus nihil. Aut porro at incidunt. Odio, illo repellendus!
-                        Nobis nihil, dolorum asperiores fugiat nostrum voluptatem sit iste iure sapiente tempora animi recusandae, harum inventore eius maxime. Hic nostrum eligendi odit a, consequuntur eum consequatur ex deleniti doloribus laboriosam.
-                    </p>
+                    <p><?php echo $museo["about"];?></p>
                 </div>
             </div>
         </article>
         <article class="buyZone">
-            <h2>Comprar boletos para Nombre museo</h2>
+            <h2>Comprar boletos para <?php echo $museo["nombre"];?></h2>
             <p>Selecciona fecha para escoger tus boletos</p>
             <form>
                 <div>
