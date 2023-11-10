@@ -136,6 +136,29 @@
                     }
                 ?>
         </article>
+
+
+
+
+
+
+        <article>
+            <div>
+                <form action="museo.php" method="post">
+                    <h3>Museo</h3>
+                    <img src="../media/img/backgrundAccess.jpeg" alt="Imagen del museo">
+                    <p>texto del museo</p>
+                    <input type="text" name="nombre" value="Delta">
+                    <button type="submmit">Ver Museo</button>
+                </form>
+            </div>
+        </article>
+
+
+
+
+
+
     </section>
     <hr>
     <footer>

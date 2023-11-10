@@ -55,3 +55,7 @@
     border: #ddd 2px solid;
     z-index: 0;
 }
+
+.main article div form input{
+    display: none;
+}
