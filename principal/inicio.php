@@ -1,5 +1,5 @@
 <?php
-    $defaulLimit = 12;
+    $defaulLimit = 6;
 
     include_once("../db/connect.php");
     class MainDAO extends Connect {
@@ -7,26 +7,16 @@
             parent::__construct();
         }
 
-        /* debe ser reemplazado despues*/
         public function getMain($id) {
             $sql = "SELECT * from museo where id_museo=?;";
 
             $stmt = parent::get()->prepare($sql);
             $stmt->bindParam(1, $id);
-
-            $execute = $stmt->execute();
-            $exists = $stmt->fetch(PDO::FETCH_ASSOC);
-            if ($execute && $exists) {
-                $nombre = $exists["nombre"];
-                $img_url = $exists["img_url"];
-                $detalles = $exists["detalles"];
-
-                $array = array($nombre, $img_url, $detalles);
-            } else {
-                $array ();
+            
+            if ($stmt->execute()) {
+                $museo = $stmt->fetch();
+                return $museo;
             }
-
-            return $array;
         }
 
         public function sortBy($atribute, $order, $limit) {
@@ -72,7 +62,7 @@
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/bones.ico"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
         </article>
     </header>
     <hr>
@@ -84,21 +74,19 @@
             </form>
         </nav>
         <hr>
-        <div class="spliter">Museos populares</div>
+        <div class="spliter">Para ti</div>
         <article>
             <?php
-                $ids;
-                for ($i = 0; $i < 6; $i++) {
-                    $ids = $posgres->sortBy("nombre", "asc", $defaulLimit);
-                }
-                foreach ($ids as $id) {
+                $consulta = $posgres->sortBy("nombre", "asc", $defaulLimit);
+                foreach ($consulta as $id) {
                     $museo = $posgres->getMain($id);
                     echo "  <div>
                                     <form action='museo.php' method='post'>
-                                        <h3>$museo[0]</h3>
+                                        <h3>" . $museo["nombre"] . "</h3>
                                         <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                        <p>$museo[2]</p>
-                                        <input type='text' name='nombre' value='$museo[0]'>
+                                        <p>" . $museo["sinopsis"] . "</p>
+                                        <p><b>" . $museo["categoria"] . "</b></p>
+                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
                                         <button type='submmit'>Ver Museo</button>
                                     </form>
                                 </div>";
@@ -106,48 +94,44 @@
             ?>
         </article>
         <hr>
-        <div class="spliter">Recomendado para ti</div>
-        <article>
-                <?php
-                    $ids;
-                    for ($i = 0; $i < 6; $i++) {
-                        $ids = $posgres->sortBy("id_museo", "asc", $defaulLimit);
-                    }
-                    foreach ($ids as $id) {
-                        $museo = $posgres->getMain($id);
-                        echo "  <div>
-                                    <form action='museo.php' method='post'>
-                                        <h3>$museo[0]</h3>
-                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                        <p>$museo[2]</p>
-                                        <input type='text' name='nombre' value='$museo[0]'>
-                                        <button type='submmit'>Ver Museo</button>
-                                    </form>
-                                </div>";
-                    }
-                ?>
-        </article>
-        <hr>
-        <div class="spliter">En tendencia</div>
+        <div class="spliter">Más visitados</div>
         <article>
             <?php
-                $ids;
-                    for ($i = 0; $i < 6; $i++) {
-                        $ids = $posgres->sortBy("visitas", "asc", $defaulLimit);
-                    }
-                    foreach ($ids as $id) {
-                        $museo = $posgres->getMain($id);
-                        echo "  <div>
+                $consulta = $posgres->sortBy("visitas", "desc", $defaulLimit);
+                foreach ($consulta as $id) {
+                    $museo = $posgres->getMain($id);
+                    echo "  <div>
                                     <form action='museo.php' method='post'>
-                                        <h3>$museo[0]</h3>
+                                        <h3>" . $museo["nombre"] . "</h3>
                                         <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
-                                        <p>$museo[2]</p>
-                                        <input type='text' name='nombre' value='$museo[0]'>
+                                        <p>" . $museo["sinopsis"] . "</p>
+                                        <p><b>" . $museo["categoria"] . "</b></p>
+                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
                                         <button type='submmit'>Ver Museo</button>
                                     </form>
                                 </div>";
-                    }
-                ?>
+                }
+            ?>
+        </article>
+        <hr>
+        <div class="spliter">Mejor puntuados</div>
+        <article>
+            <?php
+                $consulta = $posgres->sortBy("puntuacion", "desc", $defaulLimit);
+                foreach ($consulta as $id) {
+                    $museo = $posgres->getMain($id);
+                    echo "  <div>
+                                    <form action='museo.php' method='post'>
+                                        <h3>" . $museo["nombre"] . "</h3>
+                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <p>" . $museo["sinopsis"] . "</p>
+                                        <p><b>" . $museo["categoria"] . "</b></p>
+                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
+                                        <button type='submmit'>Ver Museo</button>
+                                    </form>
+                                </div>";
+                }
+            ?>
         </article>
     </section>
     <hr>

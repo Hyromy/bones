@@ -55,7 +55,7 @@
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/bones.ico"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
         </article>
     </header>
     <hr>
@@ -70,44 +70,31 @@
         <?php
             if ($museo["id_museo"] != 0) {
                 //Falta operar más de un resultado si es que existen
-
-
                 echo "<h2>Resutados de busqueda para " . $busqueda . "</h2>";
-                
-                echo "ID de busqueda: " . $museo["id_museo"] . "<br>";
-                echo "Nombre de busqueda: " . $museo["nombre"] . "<br>";
-                echo "Categorias de busqueda: " . $museo["categoria"] . "<br>";
-
+                echo "  <div class='result'>
+                            <article class='short'>
+                                <img class='picture' src='../media/img/backgrundAccess.jpeg'>
+                            </article>
+                            <article class='long'>
+                                <h2>" . $museo["nombre"] . "</h2>
+                                <p>" . $museo["about"] . "</p>
+                            </article>
+                            <article class='short'>
+                                <form action='museo.php' method='post'>
+                                    <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
+                                    <button class='send' type='submit'>Ver Museo</button>
+                                </form>
+                            </article>        
+                        </div>";
                 echo "<hr>";
-
-                    
             } else {
                 echo "  <div class='notFound'>
-                            <h2>No hay resultados de busqueda para $busqueda</h2>
+                            <h2>No hay resultados de busqueda para " . $busqueda . "</h2>
                             <img src='../media/img/qiqi_fallen.png'>
                             <p>No encontré nada, quizá quieres algo que solo tus pensamientos pueden imaginar</p>
                         </div>";
             }
         ?>
-
-        <div class="result">
-            <article class="short">
-                <img class="picture" src="../media/img/backgrundAccess.jpeg">
-            </article>
-            <article class="long">
-                <h2>Nombre Museo</h2>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Nisi, temporibus laboriosam recusandae asperiores architecto eum qui, perspiciatis ipsam ab incidunt ex itaque omnis nesciunt aperiam dolorum enim illo, corrupti tempore.</p>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Laudantium, quod cupiditate voluptatem facilis iste nobis quaerat laboriosam blanditiis doloremque assumenda officiis cumque suscipit eveniet excepturi porro doloribus dolor voluptas eos.</p>
-            </article>
-            <article class="short">
-                <!-- <form> -->
-                    <button class="send" type="submit">Ver Museo</button>
-                <!-- </form> -->
-            </article>        
-        </div>
-
-
-        
     </section>    
     <hr>
     <footer>

@@ -56,6 +56,23 @@
     z-index: 0;
 }
 
+.main article div form{
+    display: flex;
+    flex-direction: column;
+}
+
 .main article div form input{
     display: none;
+}
+
+.main article div form button{
+    color: #fff;
+    font-size: 1.5rem;
+    margin-right: 2rem;
+    padding: 0.5rem 1.5rem;
+    background-color: #00bbffdd;
+    border: 2px #0bf solid;
+    border-radius: 16px;
+    width: 192px;
+    margin: 0 auto;
 }

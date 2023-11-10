@@ -40,7 +40,7 @@
 
     $postgres = new DataDAO;
     $museo = $postgres->getData($nombre);
-    $img = $postgres->drawStar($museo["puntuacion"])
+    $img = $postgres->drawStar($museo["puntuacion"]);
 ?>
 
 <html lang="es">
@@ -66,7 +66,7 @@
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/bones.ico"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
         </article>
     </header>
     <hr>
@@ -107,9 +107,10 @@
         <article class="buyZone">
             <h2>Comprar boletos para <?php echo $museo["nombre"];?></h2>
             <p>Selecciona fecha para escoger tus boletos</p>
-            <form>
+            <form action="museo.php" method="post">
                 <div>
                     <label>Dia de la visita</label><input type="date" required>
+                    <input class="hidden" type="text" name="nombre" value="<?php echo $museo["nombre"];?>">
                     <button type="submmit">Comprar</button>
                 </div>
                 <div>
