@@ -21,17 +21,13 @@
 
         public function drawStar($amount) {
             $img = "";
-            if ($amount >= 1) {
-                $x = 0;
-                for ($i = 1; $i < $amount; $i++) {
-                    $img = $img . "<img src='../media/img/star.png'>";
-                    $x++;
-                }
-                if (($amount - $x) != 0) {
-                    $img = $img . "<img src='../media/img/starHalf.png'>";
-                }
-            } else {
-                $img = "<img src='../media/img/starHalf.png'>";
+            $x = 0;
+            for ($i = 1; $i <= $amount; $i++) {
+                $img = $img . "<img src='../media/img/star.png'>";
+                $x++;
+            }
+            if (($amount - $x) != 0) {
+                $img = $img . "<img src='../media/img/starHalf.png'>";
             }
 
             return $img;
@@ -84,7 +80,7 @@
                     <h2><?php echo $museo["nombre"];?></h2>
                     <p><b>Descripción</b> <?php echo $museo["sinopsis"];?></p>
                     <p><b>Categorias</b> <?php echo $museo["categoria"];?></p>
-                    <p><b>Puntuación</b> <?php echo $img;?></p>
+                    <p><b>Puntuación</b> <?php echo $museo["puntuacion"] . " " .$img;?></p>
                     <p><b>Visitas totales</b> <?php echo $museo["visitas"];?></p>
                 </div>
             </div>

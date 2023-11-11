@@ -11,31 +11,21 @@
         public function getMuseo($busqueda) {
             $sql = "SELECT * from museo where nombre like '%$busqueda%';";
             $stmt = parent::get()->prepare($sql);
-            $execute = $stmt->execute();
-            
-            $museo = $stmt->fetch(PDO::FETCH_ASSOC);
-               
-            if ($execute && $museo) {
-                return $museo;
-            } else {
-
-                $museo = array("id_museo" => 0,
-                                "nombre" => "Sin resultados");
-                
-                return $museo;
-            }
+            $stmt->execute();
+            $museos = $stmt->fetchAll(PDO::FETCH_OBJ);
+            return $museos;
         }
     }
 
     $postgres = new MuseoDAO;
-    $museo = $postgres->getMuseo($busqueda);
+    $museos = $postgres->getMuseo($busqueda);
 ?>
 
 <!DOCTYPE html>
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BONES | <?php echo $museo["nombre"];?></title>
+    <title>BONES | Busqueda</title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
     <link rel="stylesheet" href="../styles/default.css">
     <link rel="stylesheet" href="../styles/list.css">
@@ -68,25 +58,25 @@
         </nav>
 
         <?php
-            if ($museo["id_museo"] != 0) {
-                //Falta operar más de un resultado si es que existen
+            if (count($museos) > 0) {
                 echo "<h2>Resutados de busqueda para " . $busqueda . "</h2>";
-                echo "  <div class='result'>
-                            <article class='short'>
-                                <img class='picture' src='../media/img/backgrundAccess.jpeg'>
-                            </article>
-                            <article class='long'>
-                                <h2>" . $museo["nombre"] . "</h2>
-                                <p>" . $museo["about"] . "</p>
-                            </article>
-                            <article class='short'>
-                                <form action='museo.php' method='post'>
-                                    <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
-                                    <button class='send' type='submit'>Ver Museo</button>
-                                </form>
-                            </article>        
-                        </div>";
-                echo "<hr>";
+                foreach ($museos as $museo) {
+                    echo "  <div class='result'>
+                                <article class='short'>
+                                    <img class='picture' src='../media/img/backgrundAccess.jpeg'>
+                                </article>
+                                <article class='long'>
+                                    <h2>" . $museo->nombre . "</h2>
+                                    <p>" . $museo->about . "</p>
+                                </article>
+                                <article class='short'>
+                                    <form action='museo.php' method='post'>
+                                        <input type='text' name='nombre' value='" . $museo->nombre . "'>
+                                        <button class='send' type='submit'>Ver Museo</button>
+                                    </form>
+                              </article>        
+                            </div>";
+                }
             } else {
                 echo "  <div class='notFound'>
                             <h2>No hay resultados de busqueda para " . $busqueda . "</h2>
