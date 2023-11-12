@@ -93,7 +93,7 @@
                                 <article class='short'>
                                     <form action='museo.php' method='post'>
                                         <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
-                                        <input type='text' name='nombre' value='" . $museo->nombre . "'>
+                                        <input class='hidden' type='text' name='nombre' value='" . $museo->nombre . "'>
                                         <button class='send' type='submit'>Ver Museo</button>
                                     </form>
                               </article>        

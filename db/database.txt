@@ -17,16 +17,16 @@ create table supervisor(id_supervisor serial primary key,
                 id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade);
 
 create table museo(id_museo serial primary key,
-                nombre varchar(128) not null,
+                nombre varchar(128) unique not null,
                 categoria varchar(256) not null,
-                sinopsis varchar(256),
+                sinopsis varchar(300) not null,
                 estado varchar(64) not null,
                 colonia varchar(128) not null,
                 calle varchar(128) not null,
-                detalles varchar(128) default '[No se ha proporcionado informacion]',
+                detalles varchar(128),
                 map_url varchar(256),
                 address_url varchar(256),
-                about varchar(2048),
+                about varchar(2048) not null,
                 puntuacion float check(puntuacion >= 0 and puntuacion <= 5) default 0,
                 visitas int default 0,
                 vid_url varchar(1024),
@@ -63,9 +63,13 @@ create table valoracion(id_valoracion serial primary key,
                 estrellas int check(estrellas >= 1 and estrellas <= 5) not null,
                 opinion varchar(256) not null);
 
+create view res_museo as select id_museo, nombre, puntuacion, visitas from museo;
+create view res_usuario as select id_usuario, nombre_usuario, correo from usuario;
 insert into usuario(nombre_usuario, correo, contrasena) values('Admin', 'admin@email.com', 'admin.1234');
 
-categorias disponibles "Arte Cultura Arqueologia Tecnologia Arquitectura Antropologia Etniografia";
+--categorias disponibles "Arte Cultura Arqueologia Tecnologia Arquitectura Antropologia Etniografia";
+
+
 
 
 
@@ -85,5 +89,5 @@ insert into museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles,
     ('Ni', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 4.2, 5649),
     ('Xi', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 1.3, 5942),
     ('Omicron', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 2.4, 1548),
-    ('Pi', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 5, 4862);
+    ('Pi', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 5, 4862),
     ('Prueba', ' Cultura Arqueologia Tecnologia Arquitectura ', 'Museo DELTA, lleno de un monton de deltas','Estado de Mexico', 'Tecamac', 'Jardines del mar', 'al lado de una similares', 'https://maps.app.goo.gl/iXm1ud1E3gpGZoJy5', 'https://www.youtube.com/watch?v=j9jNb5WRQTQ', 'Esta es una descripcion extensa sobre que trata el museo que tiene y mas wevadas', 3, 100);
