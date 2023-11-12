@@ -24,7 +24,7 @@
     <b>Insertar museo</b>
     <p>Los campos con asterisco al inicio son obligatorios</p>
     <p>Para aquellos datos vacios o desconocidos inserte un "0"</p>
-    <form method="post">
+    <form method="post" enctype="multipart/form-data">
         <br><input type="text" name="nombre" required placeholder="*nombre del museo">
         <br><label>categorias (selecciona al menos 1)</label>
         <br><label><input type="checkbox" name="categoria[]" value="Arte">arte</label>
@@ -61,6 +61,7 @@
         <br><input type="text" name="about" placeholder="*detalles sobre el museo">
         <br><input type="text" name="puntuacion" placeholder="cantidad de estrellas con BONES">
         <br><input type="text" name="visitas" placeholder="cantidad de visitas con BONES">
+        <br><input type="file" name="img" placeholder="imagen del museo">
         <br><button type="submit">Guardar</button>
         <button type="reset">Limpiar</button>
     </form>
@@ -81,8 +82,9 @@
         public $about;
         public $puntuacion;
         public $visitas;
+        public $img;
         
-        public function __construct($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas) {
+        public function __construct($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas, $img) {
             $this->nombre = $nombre;
 
             $box = "";
@@ -108,6 +110,7 @@
             $this->about = $about;
             $this->puntuacion = $puntuacion;
             $this->visitas = $visitas;
+            $this->img = $img;
         }
     }
 
@@ -118,7 +121,17 @@
         }
 
         public function insertMuseo($museo) {
-            $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?);";
+            $path = "../../media/temp/";
+            $nomImg = $path.basename($_FILES["img"]["name"]);
+            if (move_uploaded_file($_FILES["img"]["tmp_name"], $nomImg)) {
+                echo "imagen subida con exito";
+            } else {
+                echo "error al subir la imagen";
+            }
+            $file = file_get_contents($nomImg);
+            $museo->img = bin2hex($file);
+
+            $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas, img) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, decode('{$museo->img}', 'hex'));";
             $stmt = parent::get()->prepare($sql);
             
             $stmt->bindParam(1, $museo->nombre);
@@ -155,6 +168,7 @@
         $about = $_POST["about"];
         $puntuacion = $_POST["puntuacion"];
         $visitas = $_POST["visitas"];
+        $img = $_POST["img"];
 
         $a = true;
         $c = true;
@@ -205,7 +219,7 @@
 
         if ($a && $c && $d && $e && $f && $g && $h && $i && $j) {
             $postgres = new insertMuseoDAO;
-            $museo = new  Museo($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas);
+            $museo = new  Museo($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas, $img);
             $postgres->insertMuseo($museo);
         } else {
             echo "<span>algun parametro no se respeto</span>";

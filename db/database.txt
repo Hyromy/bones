@@ -29,8 +29,8 @@ create table museo(id_museo serial primary key,
                 about varchar(2048) not null,
                 puntuacion float check(puntuacion >= 0 and puntuacion <= 5) default 0,
                 visitas int default 0,
-                vid_url varchar(1024),
-                img_url varchar(6150));
+                img bytea, 
+                img_name varchar(64));
 
 create table proveedor(id_supervisor serial primary key,
                 id_usuario int, foreign key(id_usuario) references usuario(id_usuario) on update cascade on delete cascade,
@@ -66,9 +66,6 @@ create table valoracion(id_valoracion serial primary key,
 create view res_museo as select id_museo, nombre, puntuacion, visitas from museo;
 create view res_usuario as select id_usuario, nombre_usuario, correo from usuario;
 insert into usuario(nombre_usuario, correo, contrasena) values('Admin', 'admin@email.com', 'admin.1234');
-
---categorias disponibles "Arte Cultura Arqueologia Tecnologia Arquitectura Antropologia Etniografia";
-
 
 
 
