@@ -1,5 +1,6 @@
 <?php
     $nombre = $_POST["nombre"];
+    $id_usuario = $_POST["user"];
 
     include_once("../db/connect.php");
     class DataDAO extends Connect {
@@ -32,11 +33,22 @@
 
             return $img;
         }
+
+        public function session($id_usuario) {
+            $sql = "SELECT * from usuario where id_usuario=?;";
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $id_usuario);
+            $stmt->execute();
+            $user = $stmt->fetch(); 
+
+            return $user;
+        }
     }
 
     $postgres = new DataDAO;
     $museo = $postgres->getData($nombre);
     $img = $postgres->drawStar($museo["puntuacion"]);
+    $user = $postgres->session($id_usuario);
 ?>
 
 <html lang="es">
@@ -57,20 +69,29 @@
         </article>
         <article class="long">
             <ul>
-                <li><a href="inicio.php">INICIO</a></li>
+                <li><a href="inicio.php?user=<?php echo $id_usuario?>">INICIO</a></li>
                 <li><a href="../menu/boletos.html">BOLETOS</a></li>
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="<?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
     <nav>
-        <form class="src" action="busqueda.php" method="get">
+        <form class="src" id="nav" action="busqueda.php" method="post">
             <img src="../media/img/buscar.png">
+            <input class="hidden" type="numer" name="user" value="<?php echo $user["id_usuario"];?>">
             <input name="busqueda" type="text" placeholder="Buscar museos">
         </form>
+        <script>
+            document.addEventListener("keypress", function (x) {
+                if (x.keyCode == 13 && x.target.type === "text") {
+                    x.preventDefault();
+                    document.querySelector("#nav").submit();
+                }
+            })
+        </script>
     </nav>
     <section class="container">
         <article class="museo">
@@ -107,6 +128,7 @@
                 <div>
                     <label>Dia de la visita</label><input type="date" required>
                     <input class="hidden" type="text" name="nombre" value="<?php echo $museo["nombre"];?>">
+                    <input class="hidden" type="text" name="user" value="<?php echo $user["id_usuario"];?>">
                     <button type="submmit">Comprar</button>
                 </div>
                 <div>

@@ -1,5 +1,6 @@
 <?php
     $defaulLimit = 6;
+    $id_usuario = $_GET["user"];
 
     include_once("../db/connect.php");
     class MainDAO extends Connect {
@@ -33,9 +34,20 @@
             
             return $ids;
         }
+
+        public function session($id_usuario) {
+            $sql = "SELECT * from usuario where id_usuario=?;";
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $id_usuario);
+            $stmt->execute();
+            $user = $stmt->fetch(); 
+
+            return $user;
+        }
     }
 
     $posgres = new MainDAO;
+    $user = $posgres->session($id_usuario);
 ?>
 
 <!DOCTYPE html>
@@ -62,16 +74,25 @@
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="<?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
     <section class="main">
         <nav>
-            <form class="src" action="busqueda.php" method="get">
+            <form class="src" id="nav" action="busqueda.php" method="post">
                 <img src="../media/img/buscar.png">
+                <input class="hidden" type="numer" name="user" value="<?php echo $user["id_usuario"];?>">
                 <input name="busqueda" type="text" placeholder="Buscar museos">
             </form>
+            <script>
+                document.addEventListener("keypress", function (x) {
+                    if (x.keyCode == 13 && x.target.type === "text") {
+                        x.preventDefault();
+                        document.querySelector("#nav").submit();
+                    }
+                })
+            </script>
         </nav>
         <hr>
         <div class="spliter">Para ti</div>
@@ -86,7 +107,8 @@
                                         <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
-                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
+                                        <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
+                                        <input class='hidden' type='text' name='nombre' value='" . $museo["nombre"] . "'>
                                         <button type='submmit'>Ver Museo</button>
                                     </form>
                                 </div>";
@@ -106,7 +128,8 @@
                                         <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
-                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
+                                        <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
+                                        <input class='hidden' type='text' name='nombre' value='" . $museo["nombre"] . "'>
                                         <button type='submmit'>Ver Museo</button>
                                     </form>
                                 </div>";
@@ -126,7 +149,8 @@
                                         <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
-                                        <input type='text' name='nombre' value='" . $museo["nombre"] . "'>
+                                        <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
+                                        <input class='hidden' type='text' name='nombre' value='" . $museo["nombre"] . "'>
                                         <button type='submmit'>Ver Museo</button>
                                     </form>
                                 </div>";

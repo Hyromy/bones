@@ -28,10 +28,6 @@
     flex: 0;
 }
 
-.list .result .short form input{
-    display: none;
-}
-
 .list .result .short .send{
     color: #fff;
     font-size: 1.5rem;

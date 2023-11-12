@@ -85,3 +85,7 @@ footer div{
 footer img{
     height: 80%;
 }
+
+.hidden{
+    display: none;
+}

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="../../data/access.css">
+    <link rel="stylesheet" href="../../styles/access.css">
 </head>
 </html>
 
@@ -33,9 +33,8 @@
             $exists = $stmt->fetch(PDO::FETCH_ASSOC);
             $time = 1750;
             if ($execute && $exists) {
-                //$id_usuario = $exists["id_usuario"];
-                //echo "ID para el correo '" . $user->correo . "': " . $id_usuario;
-                echo "<script>window.location.href = '../../principal/inicio.php'</script>";
+                $user = $exists["id_usuario"];
+                header("location: ../../principal/inicio.php?user=$user");
             } else {
                 echo "  <section>
                             <header>

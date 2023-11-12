@@ -61,10 +61,6 @@
     flex-direction: column;
 }
 
-.main article div form input{
-    display: none;
-}
-
 .main article div form button{
     color: #fff;
     font-size: 1.5rem;

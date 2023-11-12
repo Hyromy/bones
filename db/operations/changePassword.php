@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="../../data/access.css">
+    <link rel="stylesheet" href="../../styles/access.css">
 </head>
 </html>
 
@@ -38,7 +38,7 @@
                 $stmt->bindParam(1, $user->nuevaContrasena);
                 $stmt->bindParam(2, $id);
 
-                if (!$stmt->execute()) {
+                if ($stmt->execute()) {
                     echo "  <section>
                                 <header>
                                     <img class='shield' src='../../media/img/bonesDino.png'>

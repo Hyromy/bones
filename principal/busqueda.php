@@ -1,5 +1,6 @@
 <?php
-    $busqueda = $_GET["busqueda"];
+    $id_usuario = $_POST["user"];
+    $busqueda = $_POST["busqueda"];
     $busqueda = ucfirst(strtolower($busqueda));
 
     include_once("../db/connect.php");
@@ -15,10 +16,21 @@
             $museos = $stmt->fetchAll(PDO::FETCH_OBJ);
             return $museos;
         }
+
+        public function session($id_usuario) {
+            $sql = "SELECT * from usuario where id_usuario=?;";
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $id_usuario);
+            $stmt->execute();
+            $user = $stmt->fetch(); 
+
+            return $user;
+        }
     }
 
     $postgres = new MuseoDAO;
     $museos = $postgres->getMuseo($busqueda);
+    $user = $postgres->session($id_usuario);
 ?>
 
 <!DOCTYPE html>
@@ -40,21 +52,30 @@
         </article>
         <article class="long">
             <ul>
-                <li><a href="inicio.php">INICIO</a></li>
+                <li><a href="inicio.php?user=<?php echo $id_usuario?>">INICIO</a></li>
                 <li><a href="../menu/boletos.html">BOLETOS</a></li>
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="<?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
     <section class="list">
         <nav>
-            <form class="src" action="busqueda.php" method="get">
+        <form class="src" id="nav" action="busqueda.php" method="post">
                 <img src="../media/img/buscar.png">
+                <input class="hidden" type="numer" name="user" value="<?php echo $user["id_usuario"];?>">
                 <input name="busqueda" type="text" placeholder="Buscar museos">
             </form>
+            <script>
+                document.addEventListener("keypress", function (x) {
+                    if (x.keyCode == 13 && x.target.type === "text") {
+                        x.preventDefault();
+                        document.querySelector("#nav").submit();
+                    }
+                })
+            </script>
         </nav>
 
         <?php
@@ -71,6 +92,7 @@
                                 </article>
                                 <article class='short'>
                                     <form action='museo.php' method='post'>
+                                        <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
                                         <input type='text' name='nombre' value='" . $museo->nombre . "'>
                                         <button class='send' type='submit'>Ver Museo</button>
                                     </form>

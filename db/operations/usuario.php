@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <link rel="stylesheet" href="../../data/access.css">
+    <link rel="stylesheet" href="../../styles/access.css">
 </head>
 </html>
 

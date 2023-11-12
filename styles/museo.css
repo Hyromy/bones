@@ -97,10 +97,6 @@
     flex-direction: column;
 }
 
-.container .buyZone form div .hidden{
-    display: none;
-}
-
 .container .buyZone form label{
     font-size: 1.5rem;
     font-weight: bold;
