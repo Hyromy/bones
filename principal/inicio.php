@@ -104,7 +104,7 @@
                     echo "  <div>
                                     <form action='museo.php' method='post'>
                                         <h3>" . $museo["nombre"] . "</h3>
-                                        <img src='../media/temp/" . $museo["img"] . "' alt='Imagen del museo'>
+                                        <img src='../media/temp/" . $museo["img_name"] . "' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
                                         <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
@@ -125,7 +125,7 @@
                     echo "  <div>
                                     <form action='museo.php' method='post'>
                                         <h3>" . $museo["nombre"] . "</h3>
-                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <img src='../media/temp/" . $museo["img_name"] . "' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
                                         <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>
@@ -146,7 +146,7 @@
                     echo "  <div>
                                     <form action='museo.php' method='post'>
                                         <h3>" . $museo["nombre"] . "</h3>
-                                        <img src='../media/img/backgrundAccess.jpeg' alt='Imagen del museo'>
+                                        <img src='../media/temp/" . $museo["img_name"] . "' alt='Imagen del museo'>
                                         <p>" . $museo["sinopsis"] . "</p>
                                         <p><b>" . $museo["categoria"] . "</b></p>
                                         <input class='hidden' type='number' name='user' value='" . $user["id_usuario"] . "'>

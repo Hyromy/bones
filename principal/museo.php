@@ -96,7 +96,7 @@
     <section class="container">
         <article class="museo">
             <div class="face">
-                <div class="topic"><img src="../media/img/backgrundAccess.jpeg"></div>
+                <div class="topic"><img src="../media/temp/<?php echo $museo["img_name"];?>"></div>
                 <div class="topic r">
                     <h2><?php echo $museo["nombre"];?></h2>
                     <p><b>Descripción</b> <?php echo $museo["sinopsis"];?></p>

@@ -83,8 +83,9 @@
         public $puntuacion;
         public $visitas;
         public $img;
+        public $img_name;
         
-        public function __construct($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas, $img) {
+        public function __construct($nombre, $categoria, $sinopsis, $estado, $colonia, $calle, $detalles, $map_url, $address_url, $about, $puntuacion, $visitas) {
             $this->nombre = $nombre;
 
             $box = "";
@@ -110,7 +111,6 @@
             $this->about = $about;
             $this->puntuacion = $puntuacion;
             $this->visitas = $visitas;
-            $this->img = $img;
         }
     }
 
@@ -122,36 +122,41 @@
 
         public function insertMuseo($museo) {
             $path = "../../media/temp/";
-            $nomImg = $path.basename($_FILES["img"]["name"]);
-            if (move_uploaded_file($_FILES["img"]["tmp_name"], $nomImg)) {
+            $img_name = $path.basename($_FILES["img"]["name"]);
+            if (move_uploaded_file($_FILES["img"]["tmp_name"], $img_name)) {
+                $img_name = $_FILES["img"]["name"];
+                
                 echo "imagen subida con exito";
-            } else {
-                echo "error al subir la imagen";
-            }
-            $file = file_get_contents($nomImg);
-            $museo->img = bin2hex($file);
 
-            $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas, img) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, decode('{$museo->img}', 'hex'));";
-            $stmt = parent::get()->prepare($sql);
+                $file = file_get_contents($img_name);
+                $museo->img = bin2hex($file);
+                
+                $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas, img, img_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, decode('{$museo->img}', 'hex'), ?);";
+                $stmt = parent::get()->prepare($sql);
+                
+                $stmt->bindParam(1, $museo->nombre);
+                $stmt->bindParam(2, $museo->categoria);
+                $stmt->bindParam(3, $museo->sinopsis);
+                $stmt->bindParam(4, $museo->estado);
+                $stmt->bindParam(5, $museo->colonia);
+                $stmt->bindParam(6, $museo->calle);
+                $stmt->bindParam(7, $museo->detalles);
+                $stmt->bindParam(8, $museo->map_url);
+                $stmt->bindParam(9, $museo->address_url);
+                $stmt->bindParam(10, $museo->about);
+                $stmt->bindParam(11, $museo->puntuacion);
+                $stmt->bindParam(12, $museo->visitas);
+                $stmt->bindParam(13, $img_name);
+                
+                if ($stmt->execute()) {
+                    echo $museo->nombre . " registrado con exito";
+                } else {
+                    echo "<span>problemas al registrar</span>";
+                }
+            } else {
+                echo "error por falta de imagen";
+            }
             
-            $stmt->bindParam(1, $museo->nombre);
-            $stmt->bindParam(2, $museo->categoria);
-            $stmt->bindParam(3, $museo->sinopsis);
-            $stmt->bindParam(4, $museo->estado);
-            $stmt->bindParam(5, $museo->colonia);
-            $stmt->bindParam(6, $museo->calle);
-            $stmt->bindParam(7, $museo->detalles);
-            $stmt->bindParam(8, $museo->map_url);
-            $stmt->bindParam(9, $museo->address_url);
-            $stmt->bindParam(10, $museo->about);
-            $stmt->bindParam(11, $museo->puntuacion);
-            $stmt->bindParam(12, $museo->visitas);
-
-            if ($stmt->execute()) {
-                echo $museo->nombre . " registrado con exito";
-            } else {
-                echo "<span>problemas al registrar</span>";
-            }
         }
     }
 

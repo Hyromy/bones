@@ -52,7 +52,7 @@
 
 .main article div img{
     width: 100%;
-    border: #ddd 2px solid;
+    border-radius: 8px;
     z-index: 0;
 }
 

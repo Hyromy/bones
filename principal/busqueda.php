@@ -81,10 +81,16 @@
         <?php
             if (count($museos) > 0) {
                 echo "<h2>Resutados de busqueda para " . $busqueda . "</h2>";
+                $i = 0;
                 foreach ($museos as $museo) {
-                    echo "  <div class='result'>
+                    echo "  <div class='result i$i'>
+                                <style>
+                                    .i$i{
+                                        background-image: linear-gradient(to left, transparent , #000 33.33%), url('../media/temp/" . $museo->img_name . "');
+                                    }
+                                </style>
                                 <article class='short'>
-                                    <img class='picture' src='../media/img/backgrundAccess.jpeg'>
+                                    <img class='picture' src='../media/temp/" . $museo->img_name . "' alt='Imagen del museo'>
                                 </article>
                                 <article class='long'>
                                     <h2>" . $museo->nombre . "</h2>
@@ -98,6 +104,7 @@
                                     </form>
                               </article>        
                             </div>";
+                    $i++;
                 }
             } else {
                 echo "  <div class='notFound'>

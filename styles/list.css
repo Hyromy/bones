@@ -11,16 +11,14 @@
     align-items: center;
     margin: 1rem 0;
     padding: 1rem;
-
     background-position: center;
-    background-image: linear-gradient(to left, transparent , #000 33.33%), url('../media/img/backgrundAccess.jpeg');
+    background-size: cover;
 }
 
 .list .result .picture{
     height: 256px;
     width: 342px;
     object-fit: cover;
-    border:#fff 2px solid;
     border-radius: 16px;
 }
 
