@@ -94,6 +94,9 @@
                 })
             </script>
         </nav>
+        <video onloadedmetadata="this.muted=true" width="100%" autoplay loop>
+            <source src="../media/img/videomuseos.mp4">
+        </video>
         <hr>
         <div class="spliter">Para ti</div>
         <article>
