@@ -46,7 +46,7 @@
                                     <h2>Contraseña restablecida</h2>
                                 </header>
                             </section>
-                            <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
+                            <script>setTimeout(function() {window.location.href = '../../'}, $time)</script>";
                 } else {
                     echo "  <section>
                                 <header>
@@ -55,7 +55,7 @@
                                     <h2>Hubo un problema<br>intentalo más tarde</h2>
                                 </header>
                             </section>
-                            <script>setTimeout(function() {window.location.href = '../../acceso/recuperar.html'}, $time)</script>";
+                            <script>setTimeout(function() {window.location.href = '../../recuperar.html'}, $time)</script>";
                 }
             } else {
                 $time = 3000;
@@ -67,7 +67,7 @@
                                 <p>No existe ninguna cuenta asociada a '$user->correo'</p>
                             </header>
                         </section>
-                        <script>setTimeout(function() {window.location.href = '../../acceso/recuperar.html'}, $time)</script>";
+                        <script>setTimeout(function() {window.location.href = '../../recuperar.html'}, $time)</script>";
             }
         }
     }

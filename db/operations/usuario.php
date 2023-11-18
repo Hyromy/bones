@@ -57,7 +57,7 @@
                                 <h2>Cuenta creada con éxito</h2>
                             </header>
                         </section>
-                        <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
+                        <script>setTimeout(function() {window.location.href = '../../'}, $time)</script>";
             } else {
                 echo "  <section>
                             <header>
@@ -66,7 +66,7 @@
                                 <h2>Hubo un problema<br>intentalo más tarde</h2>
                             </header>
                         </section>
-                        <script>setTimeout(function() {window.location.href = '../../acceso/registrarse.html'}, $time)</script>";
+                        <script>setTimeout(function() {window.location.href = '../../registrarse.html'}, $time)</script>";
             }
         }
     }

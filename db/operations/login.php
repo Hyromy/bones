@@ -43,7 +43,7 @@
                                 <h2>Correo o contraseña incorrectos</h2>
                             </header>
                         </section>
-                        <script>setTimeout(function() {window.location.href = '../../acceso/iniciarsesion.html'}, $time)</script>";
+                        <script>setTimeout(function() {window.location.href = '../../'}, $time)</script>";
             }
         }
     }

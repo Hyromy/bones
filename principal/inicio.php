@@ -70,11 +70,10 @@
         <article class="long">
             <ul>
                 <li><a href="#inicio">INICIO</a></li>
-                <li><a href="../menu/boletos.html">BOLETOS</a></li>
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="Cerrar sesion para <?php echo $user["nombre_usuario"];?>"></a>
+            <a href="../"><img class="imgSmall" src="../media/img/defaultUser.png" title="Cerrar sesion para <?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
