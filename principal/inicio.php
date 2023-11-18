@@ -167,7 +167,7 @@
             </a>
         </div>
         <div>
-            <a href="">
+            <a href="../info/project.html">
                 <img src="../media/img/bonesDino.png">
                 <br>Sobre BONES
             </a>
