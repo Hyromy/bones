@@ -34,7 +34,11 @@
             $time = 1750;
             if ($execute && $exists) {
                 $user = $exists["id_usuario"];
-                header("location: ../../principal/inicio.php?user=$user");
+                if ($user == 1) {
+                    header("location: insertMuseo.php");
+                } else {
+                    header("location: ../../principal/inicio.php?user=$user");
+                }
             } else {
                 echo "  <section>
                             <header>

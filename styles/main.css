@@ -47,7 +47,7 @@
 
 .main article div:hover{
     border: #0bf 4px solid;
-    box-shadow: #0bf 0 0 16px;
+    transform: scale(1.05);
 }
 
 .main article div img{

@@ -10,7 +10,7 @@
         }
 
         public function getMuseo($busqueda) {
-            $sql = "SELECT * from museo where nombre like '%$busqueda%';";
+            $sql = "SELECT * from museo where nombre like '%$busqueda%' or categoria like '%$busqueda%';";
             $stmt = parent::get()->prepare($sql);
             $stmt->execute();
             $museos = $stmt->fetchAll(PDO::FETCH_OBJ);
@@ -76,7 +76,6 @@
                 })
             </script>
         </nav>
-
         <?php
             if (count($museos) > 0) {
                 echo "<h2>Resutados de busqueda para " . $busqueda . "</h2>";
@@ -93,6 +92,7 @@
                                 </article>
                                 <article class='long'>
                                     <h2>" . $museo->nombre . "</h2>
+                                    <b>" . $museo->categoria . "</b>
                                     <p>" . $museo->about . "</p>
                                 </article>
                                 <article class='short'>

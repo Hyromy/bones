@@ -18,10 +18,15 @@
         span{
             color: #f00;
         }
+
+        a{
+            color: #0bf;
+        }
     </style>
 </head>
 <body>
     <b>Insertar museo</b>
+    <a href="../../">Salir</a>
     <p>Los campos con asterisco al inicio son obligatorios</p>
     <p>Para aquellos datos vacios o desconocidos inserte un "0"</p>
     <form method="post" enctype="multipart/form-data">

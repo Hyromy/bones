@@ -13,6 +13,12 @@
     padding: 1rem;
     background-position: center;
     background-size: cover;
+    transition: 0.3s ease;
+}
+
+.list .result:hover{
+    border: 4px solid #0bf;
+    transform: scale(1.05);
 }
 
 .list .result .picture{
