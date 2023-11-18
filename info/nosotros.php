@@ -1,3 +1,27 @@
+<?php
+    $id_usuario = $_GET["user"];
+
+    include_once("../db/connect.php");
+    class DevDAO extends Connect {
+        public function __construct() {
+            parent::__construct();
+        }
+
+        public function session($id_usuario) {
+            $sql = "SELECT * from usuario where id_usuario=?;";
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $id_usuario);
+            $stmt->execute();
+            $user = $stmt->fetch(); 
+
+            return $user;
+        }
+    }
+
+    $postgres = new DevDAO;
+    $user = $postgres->session($id_usuario);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -6,7 +30,6 @@
     <link rel="shorcut icon" href="../media/img/bones.ico">
     <link rel="stylesheet" href="../styles/default.css">
     <link rel="stylesheet" href="../styles/info.css">
-    <link rel="stylesheet" href="../styles/animacion1img.css">
 </head>
 <body>
     <header>
@@ -16,12 +39,12 @@
         </article>
         <article class="long">
             <ul>
-                <li><a href="../principal/inicio.php">INICIO</a></li>
+                <li><a href="../principal/inicio.php?user=<?php echo $id_usuario;?>">INICIO</a></li>
                 <li><a href="../menu/boletos.html">BOLETOS</a></li>
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="PENDIENTE____"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="Cerrar sesion para <?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
@@ -37,7 +60,7 @@
         <article class="container">
             <div>
                 <b>González Cruz Joel</b>
-                <img src="pictures/">
+                <img src="pictures/joel.jpg">
                 Lorem ipsum dolor sit amet consectetur adipisicing elit. Ipsa ullam eligendi velit, labore optio modi incidunt nulla nihil assumenda, suscipit expedita rem temporibus molestias rerum, sequi quidem commodi? Quis, id.
             </div>
             <div>
@@ -65,7 +88,7 @@
             </a>
         </div>
         <div>
-            <a href="">
+            <a href="../info/project.php?user=<?php echo $id_usuario?>">
                 <img src="../media/img/bonesDino.png">
                 <br>Sobre BONES
             </a>

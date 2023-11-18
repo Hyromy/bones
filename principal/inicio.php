@@ -74,7 +74,7 @@
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="<?php echo $user["nombre_usuario"];?>"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="Cerrar sesion para <?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
@@ -161,13 +161,13 @@
     <hr>
     <footer>
         <div>
-            <a href="">
+            <a href="../info/nosotros.php?user=<?php echo $id_usuario?>">
                 <img src="../media/img/deevee.ico">
                 <br>Sobre Nosotros
             </a>
         </div>
         <div>
-            <a href="../info/project.html">
+            <a href="../info/project.php?user=<?php echo $id_usuario?>">
                 <img src="../media/img/bonesDino.png">
                 <br>Sobre BONES
             </a>

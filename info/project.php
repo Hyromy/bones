@@ -1,3 +1,27 @@
+<?php
+    $id_usuario = $_GET["user"];
+
+    include_once("../db/connect.php");
+    class ProjectDAO extends Connect {
+        public function __construct() {
+            parent::__construct();
+        }
+
+        public function session($id_usuario) {
+            $sql = "SELECT * from usuario where id_usuario=?;";
+            $stmt = parent::get()->prepare($sql);
+            $stmt->bindParam(1, $id_usuario);
+            $stmt->execute();
+            $user = $stmt->fetch(); 
+
+            return $user;
+        }
+    }
+
+    $postgres = new ProjectDAO;
+    $user = $postgres->session($id_usuario);
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -15,12 +39,12 @@
         </article>
         <article class="long">
             <ul>
-                <li><a href="../principal/inicio.php">INICIO</a></li>
+                <li><a href="../principal/inicio.php?user=<?php echo $id_usuario;?>">INICIO</a></li>
                 <li><a href="../menu/boletos.html">BOLETOS</a></li>
             </ul>
         </article>
         <article class="short">
-            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="PENDIENTE____"></a>
+            <a href="../acceso/iniciarsesion.html"><img class="imgSmall" src="../media/img/defaultUser.png" title="Cerrar sesion para <?php echo $user["nombre_usuario"];?>"></a>
         </article>
     </header>
     <hr>
@@ -63,7 +87,7 @@
     <hr>
     <footer>
         <div>
-            <a href="">
+            <a href="../info/nosotros.php?user=<?php echo $id_usuario?>">
                 <img src="../media/img/deevee.ico">
                 <br>Sobre Nosotros
             </a>
