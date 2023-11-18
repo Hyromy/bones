@@ -4,6 +4,7 @@ nav{
     top: 100px;
     z-index: 99;
     box-shadow: #000 0 0 16px;
+    transform: scale(1.05);
 }
 
 nav .src{

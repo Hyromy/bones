@@ -154,6 +154,12 @@
                 <br>Sobre BONES
             </a>
         </div>
+        <div>
+            <a href="https://github.com/Hyromy/bones" target="_blanck">
+                <img src="../media/img/github.ico">
+                <br>Ver repositorio
+            </a>
+        </div>
     </footer>
 </body>
 </html>

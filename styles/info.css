@@ -40,6 +40,7 @@
 }
 
 .info .container{
+    max-width: 100%;
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
@@ -56,15 +57,38 @@
     transition: 0.3s ease;
 }
 
+.info .container div p{
+    margin: 0;
+    margin-bottom: 0.5rem
+}
+
+.info .container div a{
+    font-size: 1.5rem;
+}
+
+.info .container div a img{
+    height: 1.5rem;
+    width: auto;
+    border-radius: 0;
+    margin: 0;
+}
+
 .info .container div:hover{
     border: 4px solid #0bf;
-    transform: scale(1.05);
+    transform: scale(1.025);
 }
 
 .info .container div b{
     text-align: center;
     font-size: 1.5rem;
-    margin-bottom: 0.5rem;
+}
+
+.info .container div small{
+    position: relative;
+    bottom: 8px;
+    text-align: center;
+    font-style: italic;
+    color: #888;
 }
 
 .info .container div img{
