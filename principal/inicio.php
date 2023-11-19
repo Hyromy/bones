@@ -93,6 +93,10 @@
                 })
             </script>
         </nav>
+        <div class="banner">
+            <h1>Museos</h1>
+            <video src="../media/vid/banner.mp4" muted autoplay loop></video>
+        </div>
         <hr>
         <div class="spliter">Para ti</div>
         <article>
