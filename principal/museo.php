@@ -98,9 +98,9 @@
                 <div class="topic"><img src="../media/temp/<?php echo $museo["img_name"];?>"></div>
                 <div class="topic r">
                     <h2><?php echo $museo["nombre"];?></h2>
-                    <p><b>Descripción</b> <?php echo $museo["sinopsis"];?></p>
-                    <p><b>Categorias</b> <?php echo $museo["categoria"];?></p>
-                    <p><b>Puntuación</b> <?php echo $museo["puntuacion"] . " " .$img;?></p>
+                    <p><b>Descripción:</b> <?php echo $museo["sinopsis"];?></p>
+                    <p><b>Categorías:</b> <?php echo $museo["categoria"];?></p>
+                    <p><b>Puntuación:</b> <?php echo $museo["puntuacion"] . " " .$img;?></p>
                     <p><b>Visitas totales</b> <?php echo $museo["visitas"];?></p>
                 </div>
             </div>
@@ -125,7 +125,7 @@
             <p>Selecciona fecha para escoger tus boletos</p>
             <form action="museo.php" method="post">
                 <div>
-                    <label>Dia de la visita</label><input type="date" required>
+                    <label>Día de la visita</label><input type="date" required>
                     <input class="hidden" type="text" name="nombre" value="<?php echo $museo["nombre"];?>">
                     <input class="hidden" type="text" name="user" value="<?php echo $user["id_usuario"];?>">
                     <button type="submmit">Comprar</button>

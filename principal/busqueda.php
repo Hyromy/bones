@@ -37,7 +37,7 @@
 <html lang="es">
 <head>
     <meta charset="UTF-8">
-    <title>BONES | Busqueda</title>
+    <title>BONES | Búsqueda</title>
     <link rel="shorcut icon" href="../media/img/bones.ico">
     <link rel="stylesheet" href="../styles/default.css">
     <link rel="stylesheet" href="../styles/list.css">
@@ -78,7 +78,7 @@
         </nav>
         <?php
             if (count($museos) > 0) {
-                echo "<h2>Resutados de busqueda para " . $busqueda . "</h2>";
+                echo "<h2>Resutados de búsqueda para " . $busqueda . "</h2>";
                 $i = 0;
                 foreach ($museos as $museo) {
                     echo "  <div class='result i$i'>
@@ -107,7 +107,7 @@
                 }
             } else {
                 echo "  <div class='notFound'>
-                            <h2>No hay resultados de busqueda para " . $busqueda . "</h2>
+                            <h2>No hay resultados de búsqueda para " . $busqueda . "</h2>
                             <img src='../media/img/qiqi_fallen.png'>
                             <p>No encontré nada, quizá quieres algo que solo tus pensamientos pueden imaginar</p>
                         </div>";

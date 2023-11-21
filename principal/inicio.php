@@ -98,7 +98,7 @@
             <video src="../media/vid/banner.mp4" muted autoplay loop></video>
         </div>
         <hr>
-        <div class="spliter">Para ti</div>
+        <div class="spliter">Para tí</div>
         <article>
             <?php
                 $consulta = $posgres->sortBy("nombre", "asc", $defaulLimit);

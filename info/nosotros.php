@@ -59,16 +59,16 @@
         <article class="container">
             <div>
                 <b>González Cruz Joel</b>
-                <small>TSU en Desarrollo de software multiplataforma</small>
+                <small>TSU en Desarrollo de Software Multiplataforma</small>
                 <img src="pictures/joel.jpg">
-                <p>Joven apasionado por la tecnologia, las ciencias y la experimentación. Busca conotribuir a la sociedad con herramientas utiles a largo plazo, así mismo desea que estas prevelezcan y se mejoren a travez del paso del tiempo.</p>
+                <p>Joven apasionado por la tecnología, las ciencias y la experimentación. Busca conotribuir a la sociedad con herramientas útiles a largo plazo, así mismo desea que estas prevelezcan y se mejoren a travez del paso del tiempo.</p>
                 <p><a href="https://discord.com/users/608870766586494976" target="_blanck"><img src="social/discord.ico"> Discord</a></p>
                 <p><a href="https://github.com/Hyromy" target="_blanck"><img src="social/git.ico"> Github</a></p>
                 <p><a href="mailto:formulajoel9@gmail.com" target="_blanck"><img src="social/gmail.ico"> Correo</a></p>
             </div>
             <div>
                 <b>Lopez Rodrigez Beatriz</b>
-                <small>TSU en Desarrollo de software multiplataforma</small>
+                <small>TSU en Desarrollo de Software Multiplataforma</small>
                 <img src="pictures/betty.jpeg">
                 <p></p>
                 <p><a href="https://www.facebook.com/betybbu?mibextid=ZbWKwL" target="_blanck"><img src="social/facebook.ico"> Facebook</a></p>
@@ -77,7 +77,7 @@
             </div>
             <div>
                 <b>Sanchez Razo Vanessa</b>
-                <small>TSU en Desarrollo de software multiplataforma</small>
+                <small>TSU en Desarrollo de Software Multiplataforma</small>
                 <img src="pictures/vane.jpeg">
                 <p>Estudiante del Área de Desarrollo de Software Multiplataforma, buscando dar el apoyo a la sociedad por medio de una página web para más conocimiento de museos</p>
                 <p><a href="https://www.facebook.com/profile.php?id=100014421766426&mibextid=ZbWKwL" target="_blanck"><img src="social/facebook.ico"> Facebook</a></p>
