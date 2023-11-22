@@ -188,22 +188,21 @@
     $museos = $postgres->showMuseo();
 
     echo "  <h2>Lista de museos</h2>
-            <form>
-                <table>
-                    <tr>
-                        <th>ID</th>
-                        <th>NOMBRE</th>
-                        <th>CATEGORIA</th>
-                        <th>SINOPSIS</th>
-                        <th>ESTADO</th>
-                        <th>COLONIA</th>
-                        <th>CALLE</th>
-                        <th>MAPA</th>
-                        <th>PAGINA</th>
-                        <th>PUNTUACION</th>
-                        <th>VISITAS</th>
-                        <th>IMAGEN</th>
-                    </tr>";
+            <table>
+                <tr>
+                    <th>ID</th>
+                    <th>NOMBRE</th>
+                    <th>CATEGORIA</th>
+                    <th>SINOPSIS</th>
+                    <th>ESTADO</th>
+                    <th>COLONIA</th>
+                    <th>CALLE</th>
+                    <th>MAPA</th>
+                    <th>PAGINA</th>
+                    <th>PUNTUACION</th>
+                    <th>VISITAS</th>
+                    <th>IMAGEN</th>
+                </tr>";
     
     foreach ($museos as $museo) {
         echo "  <tr>
@@ -214,13 +213,17 @@
                     <td>" . $museo->estado . "</td>
                     <td>" . $museo->colonia . "</td>
                     <td>" . $museo->calle . "</td>
+                    <td>" . $museo->map_url . "</td>
                     <td>" . $museo->address_url . "</td>
-                    <td>" . $museo->id_museo . "</td>
                     <td>" . $museo->puntuacion . "</td>
                     <td>" . $museo->visitas . "</td>
-                    <td>" . $museo->img_name . "</td>   
+                    <td>" . $museo->img_name . "</td>
+                    <td><form action='update.php' method='post'><button type='submit' name='id_museo' value='" . $museo->id_museo . "'>EDITAR</button></form></td>
+                    <td><form action='detele.php' method='post'><button type='submit' name='id_museo' value='" . $museo->id_museo . "'>ELIMINAR</button></form></td>
                 </tr>";
     }
+
+    echo "</table>";
 
     if (isset($_POST["nombre"])) {
         $nombre = $_POST["nombre"];
