@@ -70,10 +70,17 @@
                 <b>Lopez Rodrigez Beatriz</b>
                 <small>TSU en Desarrollo de Software Multiplataforma</small>
                 <img src="pictures/betty.jpeg">
-                <p></p>
+                <p>Desarrolladora y diseñadora de páginas web, se desempeña en el diseño para una experiencia al usuario más intuitiva y fácil de manejar, considerando la arquitectura de la  información y la usabilidad así como satisfacción al usuario. Utiliza lenguajes como HTML y CSS para construir la apariencia, además de implementación en el servidor local</p>
                 <p><a href="https://www.facebook.com/betybbu?mibextid=ZbWKwL" target="_blanck"><img src="social/facebook.ico"> Facebook</a></p>
                 <p><a href="https://www.instagram.com/bettylopezrodriguez18/?igshid=MzMyNGUyNmU2YQ%3D%3D" target="_blanck"><img src="social/instagram.ico"> Instagram</a></p>
                 <p><a href="mailto:2523260008blopezr@gmail.com" target="_blanck"><img src="social/gmail.ico"> Correo</a></p>
+            </div>
+            <div>
+                <b>Martinez Gallegos Irving Iván</b>
+                <small>TSU en Desarrollo de software multiplataforma</small>
+                <img src="pictures/irving.jpeg">
+                <p>Estudiante de la Universidad Tecnologica de Tecamac en el area de Desarrollo de Software multiplataforma. Con el proposito de la creación de software para el uso diario</p>
+                <p><a href="mailto:martinezgallegosirvingivan@gamil.com" target="_blanck"><img src="social/gmail.ico"> Correo</a></p>
             </div>
             <div>
                 <b>Sanchez Razo Vanessa</b>
