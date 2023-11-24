@@ -145,7 +145,8 @@
                 $file = file_get_contents($img_name);
                 $museo->img = bin2hex($file);
                 
-                $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas, img, img_name) values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, decode('{$museo->img}', 'hex'), ?);";
+                $sql = "INSERT INTO museo(nombre, categoria, sinopsis, estado, colonia, calle, detalles, map_url, address_url, about, puntuacion, visitas, img, img_name)
+                values(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, decode('{$museo->img}', 'hex'), ?);";
                 $stmt = parent::get()->prepare($sql);
                 
                 $stmt->bindParam(1, $museo->nombre);
