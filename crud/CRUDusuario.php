@@ -26,19 +26,38 @@
         }
 
         public function createUser($user) {
-            $sql = "INSERT INTO usuario(nombre_usuario, ap_pat_usuario, ap_mat_usuario, correo, contrasena, no_telefono)
-                    VALUES(?, ?, ?, ?, ?, ?);";
+            if (!(($user->nombre_usuario == "" || $user->nombre_usuario == null) ||
+                ($user->correo == "" || $user->correo == null) ||
+                ($user->contrasena == "" || $user->contrasena == null))) {
             
-            $stmt = parent::get()->prepare($sql);
-            $stmt->bindParam(1, $user->nombre_usuario);
-            $stmt->bindParam(2, $user->ap_pat_usuario);
-            $stmt->bindParam(3, $user->ap_mat_usuario);
-            $stmt->bindParam(4, $user->correo);
-            $stmt->bindParam(5, $user->contrasena);
-            $stmt->bindParam(6, $user->no_telefono);
-
-            if (!$stmt->execute()) {
-                echo "<p style='color:#f00;'>Problemas al crear el usuario</p>";
+                if ($user->no_telefono != null || $user->no_telefono != "") {
+                    $sql = "INSERT INTO usuario(nombre_usuario, ap_pat_usuario, ap_mat_usuario, correo, contrasena, no_telefono)
+                        VALUES(?, ?, ?, ?, ?, ?);";
+                    
+                    $stmt = parent::get()->prepare($sql);
+                    $stmt->bindParam(1, $user->nombre_usuario);
+                    $stmt->bindParam(2, $user->ap_pat_usuario);
+                    $stmt->bindParam(3, $user->ap_mat_usuario);
+                    $stmt->bindParam(4, $user->correo);
+                    $stmt->bindParam(5, $user->contrasena);
+                    $stmt->bindParam(6, $user->no_telefono);
+                } else {
+                    $sql = "INSERT INTO usuario(nombre_usuario, ap_pat_usuario, ap_mat_usuario, correo, contrasena)
+                    VALUES(?, ?, ?, ?, ?);";
+                
+                    $stmt = parent::get()->prepare($sql);
+                    $stmt->bindParam(1, $user->nombre_usuario);
+                    $stmt->bindParam(2, $user->ap_pat_usuario);
+                    $stmt->bindParam(3, $user->ap_mat_usuario);
+                    $stmt->bindParam(4, $user->correo);
+                    $stmt->bindParam(5, $user->contrasena);
+                }
+        
+                if (!$stmt->execute()) {
+                    echo "<p style='color:#f00;'>Problemas al crear el usuario</p>";
+                }
+            } else {
+                echo "<p style='color:#f00;'>Error por falta de datos requeridos en el usuario</p>";
             }
         }
 
@@ -60,6 +79,19 @@
             }
         }
 
+        public function readUserByEmail($email) {
+            $sql = "SELECT * FROM usuario WHERE correo LIKE '%$email%';";
+
+            $stmt = parent::get()->prepare($sql);
+
+            if ($stmt->execute()) {
+                $user = $stmt->fetchAll(PDO::FETCH_OBJ);
+                return $user;
+            } else {
+                echo "<p style='color:#f00;'>Problemas al leer el usuario</p>";
+            }
+        }
+
         public function readAllUsers() {
             $sql = "SELECT * FROM usuario;";
 
@@ -74,23 +106,34 @@
         }
 
         public function updateUser($user, $name, $pat, $mat, $email, $pass, $phone) {
-            if ($name == null || $name == "") {
+            if ($name == null || $name == "" || $name == "_") {
                 $name = $user->nombre_usuario;
             }
+
             if ($pat == null || $pat == "") {
                 $pat = $user->ap_pat_usuario;
+            } else if ($pat == "_") {
+                $pat = null;
             }
+
             if ($mat == null || $mat == "") {
                 $mat = $user->ap_mat_usuario;
+            } else if ($mat == "_") {
+                $mat = null;
             }
-            if ($email == null || $email == "") {
+
+            if ($email == null || $email == "" || $email == "_") {
                 $email = $user->correo;
             }
-            if ($pass == null || $pass == "") {
+
+            if ($pass == null || $pass == "" || $email == "_") {
                 $pass = $user->contrasena;
             }
+
             if ($phone == null || $phone == "") {
                 $phone = $user->no_telefono;
+            } else if ($phone == "_") {
+                $phone = null;
             }
 
             $sql = "UPDATE usuario set nombre_usuario=?, ap_pat_usuario=?, ap_mat_usuario=?, correo=?, contrasena=?, no_telefono=?

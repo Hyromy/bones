@@ -1,8 +1,8 @@
 <?php
-    include_once("museo.php");
+    include_once("../crud/CRUDmuseo.php");
     $Museo = new MuseoDAO;
 
-    include_once("usuario.php");
+    include_once("../crud/CRUDusuario.php");
     $Usuario = new UsuarioDAO;
 ?>
 
@@ -29,6 +29,15 @@
     </style>
 </head>
 <body>
+    <?php
+        if (isset($_POST["reload"])) {
+            header("location: ../admin/admin.php");
+        }
+    ?>
+    <form action="admin.php" method="post">
+        <input type="text" name="reload" value="true" hidden>
+        <button type="submit">Recargar</button>
+    </form>
     <h2>Insertar Museo</h2>
     <form>
         <label>nombre</label><input name="nombre" type="text">
@@ -77,8 +86,6 @@
             <th>Colonia</th>
             <th>Calle</th>
             <th>Detalles</th>
-            <th>Mapa</th>
-            <th>Pagina</th>
             <th>Puntuacion</th>
             <th>Visitas</th>
             <th>Imagen</th>
@@ -95,8 +102,6 @@
                 echo "<td>" . $museo->colonia . "</td>";
                 echo "<td>" . $museo->calle . "</td>";
                 echo "<td>" . $museo->detalles . "</td>";
-                echo "<td>" . $museo->map_url . "</td>";
-                echo "<td>" . $museo->address_url . "</td>";
                 echo "<td>" . $museo->puntuacion . "</td>";
                 echo "<td>" . $museo->visitas . "</td>";
                 echo "<td><img style='height: 128px;' src='../media/temp/" . $museo->img_name . "'></td>";
@@ -108,15 +113,70 @@
     </table>
     <hr>
     <h2>Insertar Usuario</h2>
-    <form>
-        <label>Nombre</label><input type="text">
-        <br><label>Apellido Paterno</label><input type="text">
-        <br><label>Apellido Mataterno</label><input type="text">
-        <br><label>Correo</label><input type="text">
-        <br><label>Contraseña</label><input type="text">
-        <br><label>N. Telefono</label><input type="text">
-        <p><button type='submit'>Enviar</button><button type='reset'>Limpiar</button></p>
+    <form action='admin.php' method='post'>
+        <label>Nombre*</label><input required name='user_name' type="text">
+        <br><label>Apellido Paterno</label><input name='pat' type="text">
+        <br><label>Apellido Mataterno</label><input name='mat' type="text">
+        <br><label>Correo*</label><input required name='email' type="text">
+        <br><label>Contraseña*</label><input required name='pass' type="text">
+        <br><label>N. Telefono</label><input name='phone' type="text">
+        <p>
+            <button type='submit'>Enviar</button>
+            <button type='reset'>Limpiar</button>
+        </p>
     </form>
+    <h2>Buscar usuario por correo</h2>
+    <form action="admin.php" method="post">
+        <label>Correo a buscar</label><input type="text" name='get_email'>
+    </form>
+    <?php
+        if (isset($_POST["get_email"])) {
+            $get_email = $_POST["get_email"];
+            $usuarios_correos = $Usuario->readUserByEmail($get_email);
+            
+            echo "<table>";
+            echo "<tr>";
+            echo "<th colspan='9'>Resultados: " . count($usuarios_correos) . "</th>";
+            echo "</tr>";
+            
+            foreach ($usuarios_correos as $usuario_correo) {
+                echo "<tr>";
+                echo "<td>" . $usuario_correo->id_usuario . "</td>";
+                echo "<td>" . $usuario_correo->nombre_usuario . "</td>";
+                echo "<td>" . $usuario_correo->ap_pat_usuario . "</td>";
+                echo "<td>" . $usuario_correo->ap_mat_usuario . "</td>";
+                echo "<td>" . $usuario_correo->correo . "</td>";
+                echo "<td>" . $usuario_correo->contrasena . "</td>";
+                echo "<td>" . $usuario_correo->no_telefono . "</td>";
+                echo "  <td>
+                            <form action='../crud/Uuser.php' method='post'>
+                                <input hidden name='update' value='" . $usuario_correo->id_usuario . "'>
+                                <button>EDITAR</button>
+                            </form>        
+                        </td>";
+                echo "  <td>
+                            <form action='../crud/Duser.php' method='post'>
+                                <input hidden name='id' value='" . $usuario_correo->id_usuario . "'>
+                                <button type='submit'>ELIMINAR</button>
+                            </form>        
+                        </td>";
+                echo "</tr>";
+            }
+            echo "</table><br><br>";
+        }
+
+        if (isset($_POST["user_name"])) {
+            $user_name = $_POST["user_name"];
+            $pat = $_POST["pat"];
+            $mat = $_POST["mat"];
+            $email = $_POST["email"];
+            $pass = $_POST["pass"];
+            $phone = $_POST["phone"];
+            
+            $user = new Usuario("", $user_name, $pat, $mat, $email, $pass, $phone);
+            $Usuario->createUser($user);
+        }
+    ?>
     <table>
         <tr>
             <th>ID</th>
@@ -139,8 +199,19 @@
                 echo "<td>" . $usuario->correo . "</td>";
                 echo "<td>" . $usuario->contrasena . "</td>";
                 echo "<td>" . $usuario->no_telefono . "</td>";
-                echo "<td><button>EDITAR</button></td>";
-                echo "<td><button>ELIMINAR</button></td>";
+                echo "  <td>
+                            <form action='../crud/Uuser.php' method='post'>
+                                <input hidden name='update' value='" . $usuario->id_usuario . "'>
+                                <button>EDITAR</button>
+                            </form>        
+                        </td>";
+                echo "  <td>
+                            <form action='../crud/Duser.php' method='post'>
+                                <input hidden name='id' value='" . $usuario->id_usuario . "'>
+                                <button type='submit'>ELIMINAR</button>
+                            </form>        
+                        </td>";
+                echo "</form>";
                 echo "</tr>";
             }
         ?>
