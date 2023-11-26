@@ -110,9 +110,9 @@
                     <p><b>Entidad federativa: </b><?php echo $museo["estado"];?></p>
                     <p><b>Colonia: </b><?php echo $museo["colonia"];?></p>
                     <p><b>Calle: </b><?php echo $museo["calle"];?></p>
-                    <?php if ($museo["detalles"] != 0) {echo "<p><b>Detalles de la dirección: </b>" . $museo["detalles"];}?>
-                    <?php if ($museo["map_url"] != 0) {echo "<p><a href='" . $museo["map_url"] . "' target='_blanck'><img src='../media/img/link.png'> Ver en el mapa</a></p>";}?>
-                    <?php if ($museo["address_url"] != 0) {echo "<p><a href='" . $museo["address_url"] . "' target='_blanck'><img src='../media/img/link.png'> Página oficial de '" . $museo["nombre"] . "'</a></p>";}?>
+                    <?php if ($museo["detalles"] != "") {echo "<p><b>Detalles de la dirección: </b>" . $museo["detalles"];}?>
+                    <?php if ($museo["map_url"] != "") {echo "<p><a href='" . $museo["map_url"] . "' target='_blanck'><img src='../media/img/link.png'> Ver en el mapa</a></p>";}?>
+                    <?php if ($museo["address_url"] != "") {echo "<p><a href='" . $museo["address_url"] . "' target='_blanck'><img src='../media/img/link.png'> Página oficial de '" . $museo["nombre"] . "'</a></p>";}?>
                 </div>
                 <div class="data">
                     <h3>Datos generales</h3>
